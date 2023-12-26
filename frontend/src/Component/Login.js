@@ -1,7 +1,26 @@
 import { Link } from "react-router-dom";
 import iconImage from '../images/favicon/favicon.ico'; 
+import { useState } from "react";
 
 export const Login = () => {
+  const [singnUpData, setsignUpData] = useState({
+    email:"",password:""
+});
+
+const changeHandle = (event)=> {
+  const {name,type,value,checked} = event.target;
+  // console.log(name,type,value,checked);
+  setsignUpData((prev)=>({
+    ...prev,[name] : value
+  }))
+
+  // console.log(singnUpData.uName,singnUpData.email); 
+}
+
+const signInHandle = (e)=>{
+  e.preventDefault();
+  console.log(`email:  ${singnUpData.email} password:${singnUpData.password}`);
+}
   return (
     <div className="h-screen bg-slate-100 flex justify-center items-center">
       <div className="w-3/12 flex flex-col gap-5 rounded-lg bg-white p-5 my-2 relative">
@@ -21,9 +40,12 @@ export const Login = () => {
           <label htmlFor="mailoruser">Email OR USERNAME</label>
           <input
             type="text"
+            name="email"
             id="mailoruser"
+            value={singnUpData.email}
             placeholder="Enter your Email Or username"
             className=" border-2 p-2 rounded-md"
+            onChange={changeHandle}
           />
         </div>
         <div className="flex flex-col gap-2">
@@ -36,15 +58,18 @@ export const Login = () => {
           <input
             type="password"
             id="pass"
+            name="password"
+            value={singnUpData.password}
             placeholder="Enter your Password"
             className="border-2 p-2 rounded-md"
+            onChange={changeHandle}
           />
         </div>
         <div className="flex gap-2 font-light">
           <input type="checkbox" id="remember" className="w-4 rounded-md" />
           <label htmlFor="remember">remember Me</label>
         </div>
-        <button className="bg-[#696cff] shadow-lg text-white p-2 rounded-lg font-bold text-center ">
+        <button className="bg-[#696cff] shadow-lg text-white p-2 rounded-lg font-bold text-center " onClick={signInHandle}>
           {" "}
           Sign In
         </button>
