@@ -71,7 +71,7 @@ const signInHandle = (e)=>{
         </div>
         <button className="bg-[#696cff] shadow-lg text-white p-2 rounded-lg font-bold text-center " onClick={signInHandle}>
           {" "}
-          Sign In
+         <Link to={"/dashboard"}> Sign In </Link>
         </button>
         <div>
           New on our platform?{" "}

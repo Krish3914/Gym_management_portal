@@ -1,8 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import iconImage from "../images/favicon/favicon.ico";
 import { useState } from "react";
 
 export const Signup = () => {
+  const navigate = useNavigate();
   const [singnUpData, setsignUpData] = useState({
       uName:"",email:"",password:""
   });
@@ -19,7 +20,14 @@ export const Signup = () => {
 
   const signupHandle = (e)=>{
     e.preventDefault();
+    console.log("clicked on me");
     console.log(`Name: ${singnUpData.uName} email:  ${singnUpData.email} password:${singnUpData.password}`);
+    if(!singnUpData.uName && !singnUpData.password){
+      console.log("plases fill all the details");
+    }
+    else{
+      navigate("/login")
+    }
   }
   
   return (

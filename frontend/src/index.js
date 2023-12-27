@@ -5,6 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import { RouterProvider, createBrowserRouter ,Outlet} from "react-router-dom";
 import { Login } from "./Component/Login";
 import { Signup } from "./Component/Signup";
+import {Dashboard} from "./Component/Dashboard";
 
 const App = () => {
   return (
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
         path: "/login",
         element: <Login />,
       },
+      {
+        path:"/dashboard",
+        element:<Dashboard/>
+      }
     ],
   },
 ]);
