@@ -1,4 +1,12 @@
+import { useEffect } from "react";
+import { ToastContainer,toast } from "react-toastify";
+
 export const Dashboard = () => {
+
+  useEffect(()=>{
+    toast.success("logged in Successfully");
+  },[])
+  
   return (
     <div className="bg-slate-100">
       <div className="grid grid-cols-2 grid-rows-2 w-3/12 gap-3">
@@ -39,6 +47,7 @@ export const Dashboard = () => {
           <span className="text-green-500">78.2%</span>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   );
 };

@@ -1,12 +1,61 @@
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import iconImage from "../images/favicon/favicon.ico";
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+  // require("dotenv").config();
 
 export const Signup = () => {
   const navigate = useNavigate();
-  const [singnUpData, setsignUpData] = useState({
+  const [signupData, setsignUpData] = useState({
       uName:"",email:"",password:""
   });
+  const emptyInputs = ()=>{
+
+    setsignUpData({
+      uName:"",
+      email:"",
+      password:""
+    })
+  }
+
+  const createUser = async (data)=>{
+    // console.log(data);
+
+    const realData = {
+      name : data.uName,
+     email : data.email,
+     password : data.password,
+     phone : 414120123
+    }
+
+    try{
+      const savedRes = await fetch( 
+        "http://localhost:4000/api/v1/signup",
+       {
+        method:"POST",
+        headers:{
+          "Content-Type":"application/json",
+        },
+        body:JSON.stringify({...realData}),
+       }
+      );
+
+      if(!savedRes.ok){
+        throw new Error(`error throw with status resonse${savedRes.status}`)
+      }
+
+    // console.log("form response   ",savedRes);
+  
+    toast.success("User Creates Successfully");
+      emptyInputs();
+    }
+    catch(err){
+      emptyInputs();
+      toast.error("user Already Exists");
+    }
+    
+  };
 
   const changeHandle = (event)=> {
     const {name,type,value,checked} = event.target;
@@ -15,18 +64,18 @@ export const Signup = () => {
       ...prev,[name] : value
     }))
 
-    // console.log(singnUpData.uName,singnUpData.email); 
+    // console.log(signupData.uName,signupData.email); 
   }
 
   const signupHandle = (e)=>{
     e.preventDefault();
     console.log("clicked on me");
-    console.log(`Name: ${singnUpData.uName} email:  ${singnUpData.email} password:${singnUpData.password}`);
-    if(!singnUpData.uName && !singnUpData.password){
-      console.log("plases fill all the details");
+    console.log(`Name: ${signupData.uName} email:  ${signupData.email} password:${signupData.password}`);
+    if(!signupData.uName|| !signupData.password){
+      toast.warning("Please Fill All the details");
     }
     else{
-      navigate("/login")
+      createUser(signupData);
     }
   }
   
@@ -52,7 +101,7 @@ export const Signup = () => {
             id="name"
             name="uName"
             placeholder="Enter your username"
-            value={singnUpData.uName}
+            value={signupData.uName}
             className="border-2 p-2 rounded-md"
             onChange={changeHandle}
           />
@@ -64,7 +113,7 @@ export const Signup = () => {
             id="mail"
             name="email"
             placeholder="Enter your Email"
-            value={singnUpData.email}
+            value={signupData.email}
             className=" border-2 p-2 rounded-md"
             onChange={changeHandle}
           />
@@ -75,7 +124,7 @@ export const Signup = () => {
             type="password"
             id="pass"
             name="password"
-            value={singnUpData.password}
+            value={signupData.password}
             placeholder="Enter your Password"
             className="border-2 p-2 rounded-md"
             onChange={changeHandle}
@@ -101,6 +150,7 @@ export const Signup = () => {
           </span>
         </div>
       </form>
+      <ToastContainer />
     </div>
   );
 };

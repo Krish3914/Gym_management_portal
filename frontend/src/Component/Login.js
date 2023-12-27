@@ -1,31 +1,84 @@
-import { Link } from "react-router-dom";
-import iconImage from '../images/favicon/favicon.ico'; 
+import { Link, useNavigate } from "react-router-dom";
+import iconImage from "../images/favicon/favicon.ico";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const Login = () => {
-  const [singnUpData, setsignUpData] = useState({
-    email:"",password:""
-});
+  const [singnUpData, setSignInData] = useState({
+    email: "",
+    password: "",
+  });
 
-const changeHandle = (event)=> {
-  const {name,type,value,checked} = event.target;
-  // console.log(name,type,value,checked);
-  setsignUpData((prev)=>({
-    ...prev,[name] : value
-  }))
+  const navigate = useNavigate();
 
-  // console.log(singnUpData.uName,singnUpData.email); 
-}
+  const changeHandle = (event) => {
+    const { name, type, value, checked } = event.target;
+    // console.log(name,type,value,checked);
+    setSignInData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
 
-const signInHandle = (e)=>{
-  e.preventDefault();
-  console.log(`email:  ${singnUpData.email} password:${singnUpData.password}`);
-}
+    // console.log(singnUpData.uName,singnUpData.email);
+  };
+
+  const LoginUser = async (data) => {
+    // console.log(data);
+
+    const realData = {
+      email: data.email,
+      password: data.password,
+    };
+
+    try {
+      const savedRes = await fetch("http://localhost:4000/api/v1/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ ...realData }),
+      });
+      const userVal = await savedRes.json();
+      console.log(userVal)
+      if (!userVal.status) {
+        // throw new Error(`error throw with status resonse${savedRes.status}`)
+        toast.warning("Password Does Not Match");
+        return;
+      }
+      else{
+        navigate("/dashboard");
+      }
+      
+      // emptyInputs();
+    } catch (err) {
+      toast.error("user Not Exists");
+    }
+    return false;
+  };
+
+  const signInHandle = (e) => {
+    e.preventDefault();
+    try {
+      if (!singnUpData.email || !singnUpData.password) {
+        toast.warning("Please Fill All the details");
+        throw new Error("some error");
+      }
+
+      LoginUser(singnUpData);
+      console.log(
+        `email:  ${singnUpData.email}, password:${singnUpData.password}`
+      );
+    } catch (err) {
+      console.log(err.status);
+    }
+  };
+
   return (
     <div className="h-screen bg-slate-100 flex justify-center items-center">
       <div className="w-3/12 flex flex-col gap-5 rounded-lg bg-white p-5 my-2 relative">
         <div className="flex self-center gap-2 ">
-          <img src={iconImage} className="h-10 self-center" ></img>
+          <img src={iconImage} className="h-10 self-center"></img>
           <span className="text-2xl font-semibold opacity-50">sneat</span>
         </div>
         <div className="flex flex-col gap-1">
@@ -69,9 +122,12 @@ const signInHandle = (e)=>{
           <input type="checkbox" id="remember" className="w-4 rounded-md" />
           <label htmlFor="remember">remember Me</label>
         </div>
-        <button className="bg-[#696cff] shadow-lg text-white p-2 rounded-lg font-bold text-center " onClick={signInHandle}>
+        <button
+          className="bg-[#696cff] shadow-lg text-white p-2 rounded-lg font-bold text-center "
+          onClick={signInHandle}
+        >
           {" "}
-         <Link to={"/dashboard"}> Sign In </Link>
+          Sign In
         </button>
         <div>
           New on our platform?{" "}
@@ -80,6 +136,7 @@ const signInHandle = (e)=>{
           </span>
         </div>
       </div>
+      <ToastContainer />
     </div>
   );
 };
