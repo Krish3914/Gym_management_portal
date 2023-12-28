@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.adduser:hover+div {
+    display: flex;
+}
+
+.adduser:hover .right{
+    transform:rotate(90deg);
+}
+
+.basicinput:hover{
+    display: flex;
+
+}
