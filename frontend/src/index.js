@@ -6,6 +6,9 @@ import { RouterProvider, createBrowserRouter ,Outlet} from "react-router-dom";
 import { Login } from "./Component/Login";
 import { Signup } from "./Component/Signup";
 import {Dashboard} from "./Component/Dashboard";
+import {Adduser} from "./Component/Dashboard/leftDashBoard/Adduser";
+import {Newadduser} from "./Component/Dashboard/leftDashBoard/Newadduser"
+import { Navbar } from "./Component/Dashboard/Navbar";
 
 const App = () => {
   return (
@@ -30,9 +33,16 @@ const router = createBrowserRouter([
       },
       {
         path:"/dashboard",
-        element:<Dashboard/>
+        element:<Dashboard/>,
+        children:[{
+          path:"traineeform",
+          element:<Newadduser/>
+        },{
+          path:"/dashboard",
+          element:<Navbar/>
+        }]
       }
-    ],
+    ]
   },
 ]);
 
