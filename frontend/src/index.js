@@ -9,6 +9,7 @@ import {Dashboard} from "./Component/Dashboard";
 import {Adduser} from "./Component/Dashboard/leftDashBoard/Adduser";
 import {Newadduser} from "./Component/Dashboard/leftDashBoard/Newadduser"
 import { Navbar } from "./Component/Dashboard/Navbar";
+import { Table } from "./Component/Dashboard/leftDashBoard/Tables";
 
 const App = () => {
   return (
@@ -38,8 +39,11 @@ const router = createBrowserRouter([
           path:"traineeform",
           element:<Newadduser/>
         },{
-          path:"/dashboard",
+          path:"dashboard",
           element:<Navbar/>
+        },{
+          path:"tables",
+          element:<Table/>
         }]
       }
     ]

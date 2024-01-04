@@ -1,25 +1,11 @@
-import { useState } from "react";
-import { CiSearch } from "react-icons/ci";
-import { Template } from "../../Component/Template";
+import { Searchbar } from "../Searchbar";
 
 export const Navbar = () => {
-  const [showTemplate, setshowTemplate] = useState(false);
   return (
-    <div className="flex flex-col">
-      <div className=" flex justify-between bg-white rounded-xl mt-2 shadow-xl">
-        <div className=" p-4 flex items-center w-full gap-4">
-          <CiSearch className="ml-4 text-xl" />
-          <input className="p-1 border-none" placeholder="Search.." />
-        </div>
-        <img
-          src={require("../../images/avatars/6.png")}
-          className="w-14 h-12 rounded-full self-center"
-          onClick={() => setshowTemplate(!showTemplate)}
-        />
-        {showTemplate ? <Template /> : <div className=""></div>}
-      </div>
-      <table className="bg-white">
-        <tr className="flex gap-10 ">
+    <div className="">
+      <Searchbar/>
+      <table className=" flex flex-col gap-10">
+        <tr className="flex gap-10">
           <td className="w-8/12 bg-white rounded-lg ">
             {" "}
             <div className="bg-white rounded-xl p-2">
@@ -97,7 +83,7 @@ export const Navbar = () => {
         </tr>
         <tr className="flex gap-10 justify-center">
           <td className="w-8/12"></td>
-          <td className="flex flex-col w-4/12 gap-4">
+          <td className="flex flex-col w-4/12 gap-4 bg-white p-4">
             <div className="flex gap-4">
             <img src={require("../../images/icons/unicons/paypal.png")} className="w-10 h-9 " />
             <div className="flex flex-col text-xs">
