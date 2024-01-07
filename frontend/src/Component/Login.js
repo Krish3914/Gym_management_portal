@@ -39,19 +39,21 @@ export const Login = () => {
         },
         body: JSON.stringify({ ...realData }),
       });
+
       const userVal = await savedRes.json();
-      console.log(userVal)
+      console.log(userVal.status)
       if (!userVal.status) {
         // throw new Error(`error throw with status resonse${savedRes.status}`)
         toast.warning("Password Does Not Match");
         return;
-      }
+      } 
       else{
         navigate("/dashboard");
       }
       
       // emptyInputs();
     } catch (err) {
+      console.log(err);
       toast.error("user Not Exists");
     }
     return false;

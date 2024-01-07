@@ -17,9 +17,9 @@ const Table = () => {
 
       setClients(message);
       console.log("this is Clients", clients);
-      toast.success("User Creates Successfully");
+      toast.success("Fetch The Users Data");
     } catch (err) {
-      toast.error("user Already Exists");
+      toast.error("Error Occured while Fetching users data");
       console.log("error found while Fetching");
     }
   };

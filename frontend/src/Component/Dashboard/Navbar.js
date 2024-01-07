@@ -3,7 +3,6 @@ import { Searchbar } from "../Searchbar";
 export const Navbar = () => {
   return (
     <div className="">
-      <Searchbar/>
       <table className=" flex flex-col gap-10">
         <tr className="flex gap-10">
           <td className="w-8/12 bg-white rounded-lg ">
@@ -15,10 +14,10 @@ export const Navbar = () => {
                     className="text-purple-400 font-medium opacity-65 text-lg
           "
                   >
-                    Congratulations John! 🎉
+                    Congratulations <span className="text-xl font-semibold">Shubham Nikam</span>
                   </span>
                   <span className="opacity-65">
-                    You have done<span className="font-semibold"> 72% </span>{" "}
+                    You have done<span className="font-semibold leading-3"> 0% </span>{" "}
                     more sales today. Check your new badge in your profile.
                   </span>
                   <span className="w-3/12 p-1 border-2 border-purple-300 text-purple-400  hover:bg-purple-600 text-center hover:text-white rounded-md duration-500 ">
@@ -40,8 +39,8 @@ export const Navbar = () => {
                 className="w-10"
               />
               <h2 className="text-lg">Users</h2>
-              <span className="text-2xl font-medium opacity-65">12,628</span>
-              <span className="text-green-400 ">78.2%</span>
+              <span className="text-2xl font-medium opacity-65">2</span>
+              <span className="text-green-400 ">0%</span>
             </div>
           </td>
           <td className="w-2/12 bg-white rounded-lg p-2">
@@ -51,8 +50,8 @@ export const Navbar = () => {
                 className="w-10"
               />
               <h2 className="text-lg">sales</h2>
-              <span className="text-2xl font-medium opacity-65">1,628</span>
-              <span className="text-green-400 ">28%</span>
+              <span className="text-2xl font-medium opacity-65">0</span>
+              <span className="text-green-400 ">0%</span>
             </div>
           </td>
         </tr>
@@ -65,8 +64,8 @@ export const Navbar = () => {
                 className="w-10"
               />
               <h2 className="text-lg">Payments</h2>
-              <span className="text-2xl font-medium opacity-65">14,,628</span>
-              <span className="text-green-400 ">58.2%</span>
+              <span className="text-2xl font-medium opacity-65">0</span>
+              <span className="text-green-400 ">0%</span>
             </div>
           </td>
           <td className="w-2/12 bg-white rounded-lg p-2">
@@ -76,8 +75,8 @@ export const Navbar = () => {
                 className="w-10"
               />
               <h2 className="text-lg">Transactions</h2>
-              <span className="text-2xl font-medium opacity-65">2428</span>
-              <span className="text-red-400 ">24%</span>
+              <span className="text-2xl font-medium opacity-65">0</span>
+              <span className="text-red-400 ">0%</span>
             </div>
           </td>
         </tr>
