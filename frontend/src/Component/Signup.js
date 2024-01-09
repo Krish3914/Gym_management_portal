@@ -3,10 +3,10 @@ import iconImage from "../images/favicon/favicon.ico";
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-  // require("dotenv").config();
+import axios from "axios";
 
 export const Signup = () => {
-  const navigate = useNavigate();
+  const signupUrl = "http://localhost:4000/api/v1/signup";
   const [signupData, setsignUpData] = useState({
       uName:"",email:"",password:""
   });
@@ -20,7 +20,6 @@ export const Signup = () => {
   }
 
   const createUser = async (data)=>{
-    // console.log(data);
 
     const realData = {
       name : data.uName,
@@ -28,48 +27,29 @@ export const Signup = () => {
      password : data.password,
      phone : 414120123
     }
-
-    try{
-      const savedRes = await fetch( 
-        "http://localhost:4000/api/v1/signup",
-       {
-        method:"POST",
-        headers:{
-          "Content-Type":"application/json",
-        },
-        body:JSON.stringify({...realData}),
-       }
-      );
-
-      if(!savedRes.ok){
-        throw new Error(`error throw with status resonse${savedRes.status}`)
-      }
-
-    // console.log("form response   ",savedRes);
-  
-    toast.success("User Creates Successfully");
-      emptyInputs();
-    }
-    catch(err){
-      emptyInputs();
-      toast.error("user Already Exists");
-    }
     
+    try{
+      const response = await axios.post(signupUrl,{...realData});
+      console.log(response);
+      toast.success("Account Created Successfully");
+      emptyInputs();
+    } catch(error){
+      console.log(error.message);
+      toast.warning("Existing User");
+      emptyInputs();
+    }
+
   };
 
   const changeHandle = (event)=> {
     const {name,type,value,checked} = event.target;
-    // console.log(name,type,value,checked);
     setsignUpData((prev)=>({
       ...prev,[name] : value
-    }))
-
-    // console.log(signupData.uName,signupData.email); 
+    })) 
   }
 
   const signupHandle = (e)=>{
     e.preventDefault();
-    console.log("clicked on me");
     console.log(`Name: ${signupData.uName} email:  ${signupData.email} password:${signupData.password}`);
     if(!signupData.uName|| !signupData.password){
       toast.warning("Please Fill All the details");

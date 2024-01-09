@@ -2,10 +2,9 @@ import { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { Template } from "./Template";
 
-export const Searchbar = (props) => {
+export const Searchbar = () => {
 
-  const user =props.userData;
-  console.log(user.name);
+
   const [showTemplate, setshowTemplate] = useState(false);
   return (
     <div className=" flex justify-between bg-white rounded-xl mt-4 mb-10 shadow-xl">
@@ -18,7 +17,7 @@ export const Searchbar = (props) => {
         className="w-14 h-12 rounded-full cursor-pointer self-center"
         onClick={() => setshowTemplate(!showTemplate)}
       />
-      {showTemplate ? <Template user={user}/> : <div className=""></div>}
+      {showTemplate ? <Template/> : <div className="hidden"></div>}
     </div>
   );
 };

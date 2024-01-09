@@ -2,25 +2,30 @@
 import { ToastContainer, toast } from "react-toastify";
 import { ShimmerTable } from "../leftDashBoard/ShimmerTable";
 import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import {addClient} from "../../redux/clientSlice"
+import clientSlice from "../../redux/clientSlice";
 
 const Table = () => {
-  const [clients, setClients] = useState();
+  const selector = useSelector((state)=>state.client.client);
+  
+  const dispatch = useDispatch();
+
+  const clients = selector[selector.length-1];
+
   const getClients = async () => {
     try {
-      const result = await fetch("http://localhost:4000/api/v1/clients");
-      const { message } = await result.json();
-      console.log("this is message", message);
-
+      const result = await axios.get("http://localhost:4000/api/v1/clients");
+      const { message } = result.data;
+      dispatch(addClient(message));
+      
       if (!result) {
         throw new Error(`error throw with status resonse`);
       }
-
-      setClients(message);
-      console.log("this is Clients", clients);
       toast.success("Fetch The Users Data");
     } catch (err) {
       toast.error("Error Occured while Fetching users data");
-      console.log("error found while Fetching");
     }
   };
 
@@ -28,7 +33,7 @@ const Table = () => {
     getClients();
   }, []);
 
-  return !clients ? (
+  return selector.length == 0 ? (
     <ShimmerTable />
   ) : (
     <div>
@@ -42,15 +47,15 @@ const Table = () => {
             <th className="py-2 px-4 border-b">Status</th>
           </tr>
         </thead>
-        <tbody>
+       <tbody>
           {/* Add table rows and data here */}
           {clients.map((data) => {
-            <tr>
-              <td className="py-2 px-4 border-b">{data?.name}</td>
-              <td className="py-2 px-4 border-b">{data.dateOfBirth}</td>
-              <td className="py-2 px-4 border-b">{data?.phone}</td>
-              <td className="py-2 px-4 border-b">{data?.gymPlan}</td>
-              <td className="py-2 px-4 border-b">Active</td>
+           return <tr className="text-center my-10 ">
+              <td className="py-2 px-4 border-b ">{data?.name}</td>
+              <td className="py-2 px-4 border-b ">{data.dateOfBirth}</td>
+              <td className="py-2 px-4 border-b ">{data?.phone}</td>
+              <td className="py-2 px-4 border-b ">{data?.gymPlan}</td>
+              <td className="py-1 px-2 border-b text-green-600 bg-green-50 rounded-2xl">Active</td>
             </tr>
           })}
 

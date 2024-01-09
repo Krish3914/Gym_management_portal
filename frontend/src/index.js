@@ -9,12 +9,16 @@ import {Dashboard} from "./Component/Dashboard";
 import {Newadduser} from "./Component/Dashboard/leftDashBoard/Newadduser"
 import { Navbar } from "./Component/Dashboard/Navbar";
 import { Table } from "./Component/Dashboard/leftDashBoard/Tables";
+import { Provider } from "react-redux";
+import userStore from "./Component/redux/redux";
 
 const App = () => {
   return (
-    <div className="app">
+    <Provider store={userStore}>
+      <div className="app">
       <Outlet />
     </div>
+    </Provider>
   );
 };
 

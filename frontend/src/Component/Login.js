@@ -3,58 +3,41 @@ import iconImage from "../images/favicon/favicon.ico";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 export const Login = () => {
-  const [singnUpData, setSignInData] = useState({
+  const [signUpData, setSignInData] = useState({
     email: "",
     password: "",
   });
+  const loginUrl = "http://localhost:4000/api/v1/login";
 
   const navigate = useNavigate();
 
   const changeHandle = (event) => {
     const { name, type, value, checked } = event.target;
-    // console.log(name,type,value,checked);
     setSignInData((prev) => ({
       ...prev,
       [name]: value,
     }));
-
-    // console.log(singnUpData.uName,singnUpData.email);
   };
 
   const LoginUser = async (data) => {
-    // console.log(data);
-
     const realData = {
       email: data.email,
       password: data.password,
     };
 
     try {
-      const savedRes = await fetch("http://localhost:4000/api/v1/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ ...realData }),
-      });
-
-      const userVal = await savedRes.json();
-      console.log(userVal.status)
-      if (!userVal.status) {
-        // throw new Error(`error throw with status resonse${savedRes.status}`)
-        toast.warning("Password Does Not Match");
-        return;
-      } 
-      else{
+      const savedRes = await axios.post(loginUrl, { ...realData });
+      const {token} = savedRes?.data;
+      console.log(token)
+      if (savedRes.status === 200) {
+        localStorage.setItem('token', token);
         navigate("/dashboard");
       }
-      
-      // emptyInputs();
     } catch (err) {
-      console.log(err);
-      toast.error("user Not Exists");
+      toast.error(err.response?.data.message);
     }
     return false;
   };
@@ -62,14 +45,14 @@ export const Login = () => {
   const signInHandle = (e) => {
     e.preventDefault();
     try {
-      if (!singnUpData.email || !singnUpData.password) {
+      if (!signUpData.email || !signUpData.password) {
         toast.warning("Please Fill All the details");
         throw new Error("some error");
       }
 
-      LoginUser(singnUpData);
+      LoginUser(signUpData);
       console.log(
-        `email:  ${singnUpData.email}, password:${singnUpData.password}`
+        `email:  ${signUpData.email}, password:${signUpData.password}`
       );
     } catch (err) {
       console.log(err.status);
@@ -97,7 +80,7 @@ export const Login = () => {
             type="text"
             name="email"
             id="mailoruser"
-            value={singnUpData.email}
+            value={signUpData.email}
             placeholder="Enter your Email Or username"
             className=" border-2 p-2 rounded-md"
             onChange={changeHandle}
@@ -114,7 +97,7 @@ export const Login = () => {
             type="password"
             id="pass"
             name="password"
-            value={singnUpData.password}
+            value={signUpData.password}
             placeholder="Enter your Password"
             className="border-2 p-2 rounded-md"
             onChange={changeHandle}
