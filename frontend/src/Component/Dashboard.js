@@ -1,10 +1,10 @@
 import { LeftDashboard } from "./Dashboard/LeftDashboard";
 import { Outlet, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Searchbar } from "./Searchbar";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUserData } from "./redux/UserSlice";
 
 export const Dashboard = () => {

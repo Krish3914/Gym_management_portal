@@ -4,12 +4,15 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addUserData } from "./redux/UserSlice";
 
 export const Login = () => {
   const [signUpData, setSignInData] = useState({
     email: "",
     password: "",
   });
+  const dispatch = useDispatch();
   const loginUrl = "http://localhost:4000/api/v1/login";
 
   const navigate = useNavigate();
@@ -30,11 +33,11 @@ export const Login = () => {
 
     try {
       const savedRes = await axios.post(loginUrl, { ...realData });
-      const {token} = savedRes?.data;
-      console.log(token)
+      //adding the user information in the userSlice redux
+      
       if (savedRes.status === 200) {
-        localStorage.setItem('token', token);
-        navigate("/dashboard");
+        dispatch(addUserData(savedRes.data.user))
+        navigate("/dashboard/navbar");
       }
     } catch (err) {
       toast.error(err.response?.data.message);
@@ -63,7 +66,7 @@ export const Login = () => {
     <div className="h-screen bg-slate-100 flex justify-center items-center">
       <div className="w-3/12 flex flex-col gap-5 rounded-lg bg-white p-5 my-2 relative">
         <div className="flex self-center gap-2 ">
-          <img src={iconImage} className="h-10 self-center"></img>
+          <img src={iconImage} className="w-10 self-center"></img>
           <span className="text-2xl font-semibold opacity-50">sneat</span>
         </div>
         <div className="flex flex-col gap-1">
@@ -105,7 +108,7 @@ export const Login = () => {
         </div>
         <div className="flex gap-2 font-light">
           <input type="checkbox" id="remember" className="w-4 rounded-md" />
-          <label htmlFor="remember">remember Me</label>
+          <label htmlFor="remember">Remember Me</label>
         </div>
         <button
           className="bg-[#696cff] shadow-lg text-white p-2 rounded-lg font-bold text-center "

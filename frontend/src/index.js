@@ -11,6 +11,7 @@ import { Navbar } from "./Component/Dashboard/Navbar";
 import { Table } from "./Component/Dashboard/leftDashBoard/Tables";
 import { Provider } from "react-redux";
 import userStore from "./Component/redux/redux";
+import { UserProfile } from "./Component/Dashboard/leftDashBoard/UserProfile";
 
 const App = () => {
   return (
@@ -36,17 +37,20 @@ const router = createBrowserRouter([
         element: <Login />,
       },
       {
-        path:"dashboard",
+        path:"/dashboard",
         element:<Dashboard/>,
         children:[{
           path:"traineeform",
           element:<Newadduser/>
         },{
-          path:"/dashboard",
+          path:"navbar",
           element:<Navbar/>
         },{
           path:"tables",
           element:<Table/>
+        },{
+          path:"user",
+          element:<UserProfile/>
         }]
       }
     ]

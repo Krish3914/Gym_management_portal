@@ -8,11 +8,22 @@ export const Newadduser = () => {
     name: "",
     email: "",
     dob: "",
-    plan: "",
+    plan: "month",
     phone: undefined,
   });
 
   const addTraineeurl = "http://localhost:4000/api/v1/addtrainee";
+  
+  const emptyForm = ()=>{
+    // console.log("inside the empty form");
+    setuserInfo({
+      name: "",
+    email: "",
+    dob: "",
+    plan: "month",
+    phone: undefined,
+    })
+  };
 
   const createUser = async (data) => {
     const realData = {
@@ -23,18 +34,22 @@ export const Newadduser = () => {
       gymPlan: data.plan,
     };
     try {
-      console.log(realData);
+      // console.log(realData);
       const savedRes = await axios.post(addTraineeurl, { ...realData });
-      console.log(savedRes);
+      // console.log(savedRes);
       if (savedRes.status !== 200) {
         throw new Error(`Error with status response: ${savedRes.status}`);
       }
 
       toast.success("User Creates Successfully");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error("User Already Exists");
     }
+    // console.log("calling empty form");
+    // console.log(userInfo);
+    emptyForm();
+    // console.log(userInfo);
   };
 
   const clickHandle = (e) => {
@@ -116,7 +131,7 @@ export const Newadduser = () => {
         id="gymplan"
         onChange={changeHandle}
       >
-        <option value={"month"}>month</option>
+        <option value={"month"} >month</option>
         <option value={"three months"}>three months</option>
         <option value={"six months"}>six months</option>
         <option value={"one year"}>one year</option>

@@ -14,7 +14,7 @@ export const Searchbar = () => {
       </div>
       <img
         src={require("../images/avatars/6.png")}
-        className="w-14 h-12 rounded-full cursor-pointer self-center"
+        className="w-14 h-12 rounded-full cursor-pointer my-auto"
         onClick={() => setshowTemplate(!showTemplate)}
       />
       {showTemplate ? <Template/> : <div className="hidden"></div>}

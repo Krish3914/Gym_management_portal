@@ -8,7 +8,7 @@ export const LeftDashboard = () => {
     <>
       <div className=" bg-white p-4 flex flex-col gap-4">
         <div className="flex flex-col gap-4 ">
-          <Link to={"/dashboard"}>
+          <Link to={"navbar"}>
             {" "}
             <div className="flex self-start gap-2 ">
               <img src={iconImage} className="h-10 self-center "></img>
@@ -16,7 +16,7 @@ export const LeftDashboard = () => {
             </div>
           </Link>
           <div className="bg-purple-200 p-3 font-medium opacity-80 rounded-md text-purple-700">
-            <Link to={"/dashboard"}> Dashboard</Link>
+            <Link to={"navbar"}> Dashboard</Link>
           </div>
           <div className="bg-purple-200 p-3 font-medium opacity-80 rounded-md flex justify-between flex-col gap-3">
             <Link to={"/dashboard/traineeform"}>

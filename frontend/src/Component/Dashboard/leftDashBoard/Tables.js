@@ -49,10 +49,10 @@ const Table = () => {
         </thead>
        <tbody>
           {/* Add table rows and data here */}
-          {clients.map((data) => {
-           return <tr className="text-center my-10 ">
+          {clients.map((data,index) => {
+           return <tr className="text-center my-10 " key={index}>
               <td className="py-2 px-4 border-b ">{data?.name}</td>
-              <td className="py-2 px-4 border-b ">{data.dateOfBirth}</td>
+              <td className="py-2 px-4 border-b ">{(data.dateOfBirth != 0)?(data.dateOfBirth.slice(0,10)):(data.dateOfBirth)}</td>
               <td className="py-2 px-4 border-b ">{data?.phone}</td>
               <td className="py-2 px-4 border-b ">{data?.gymPlan}</td>
               <td className="py-1 px-2 border-b text-green-600 bg-green-50 rounded-2xl">Active</td>

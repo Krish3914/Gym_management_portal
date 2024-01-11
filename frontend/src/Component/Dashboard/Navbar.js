@@ -1,6 +1,7 @@
-import { Searchbar } from "../Searchbar";
+import { useSelector } from "react-redux";
 
 export const Navbar = () => {
+  const userName = useSelector((state)=>state.user.userData[0]?.name);
   return (
     <div className="">
       <table className=" flex flex-col gap-10">
@@ -11,10 +12,9 @@ export const Navbar = () => {
               <div className="flex">
                 <div className="flex mx-auto flex-col gap-4 mt-2">
                   <span
-                    className="text-purple-400 font-medium opacity-65 text-lg
-          "
+                    className="text-purple-400 font-medium text-lg"
                   >
-                    Congratulations <span className="text-xl font-semibold">Shubham Nikam</span>
+                    WelCome <span className="text-xl ">{userName}🎉</span>
                   </span>
                   <span className="opacity-65">
                     You have done<span className="font-semibold leading-3"> 0% </span>{" "}
@@ -27,7 +27,7 @@ export const Navbar = () => {
                 </div>
                 <img
                   src={require("../../images/illustrations/man-with-laptop-light.png")}
-                  className="w-3/12"
+                  className="w-4/12"
                 />
               </div>
             </div>

@@ -16,3 +16,8 @@
 .right{
     transform:rotate(90deg);
 }
+
+.active{
+    background-color: rgb(196, 196, 196);
+    opacity: 50;    
+}
