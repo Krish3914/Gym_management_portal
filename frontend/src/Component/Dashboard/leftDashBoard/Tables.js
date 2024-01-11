@@ -4,22 +4,22 @@ import { ShimmerTable } from "../leftDashBoard/ShimmerTable";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import {addClient} from "../../redux/clientSlice"
-import clientSlice from "../../redux/clientSlice";
+import { addClient } from "../../redux/clientSlice";
+import { MdDelete } from "react-icons/md";
 
 const Table = () => {
-  const selector = useSelector((state)=>state.client.client);
-  
+  const selector = useSelector((state) => state.client.client);
+
   const dispatch = useDispatch();
 
-  const clients = selector[selector.length-1];
-
+  const clients = selector[selector.length - 1];
+  console.log(selector);
   const getClients = async () => {
     try {
       const result = await axios.get("http://localhost:4000/api/v1/clients");
       const { message } = result.data;
       dispatch(addClient(message));
-      
+
       if (!result) {
         throw new Error(`error throw with status resonse`);
       }
@@ -29,6 +29,25 @@ const Table = () => {
     }
   };
 
+  const handleDeleteUser = async(index) => {
+    const updatedClients = [...clients];
+    const deletedClient = updatedClients.splice(index, 1)[0]; 
+    const id = deletedClient._id// Remove the client at the specified index
+    console.log(id);
+    try{
+      const deleteClient = await axios.delete(`http://localhost:4000/api/v1/deleteclient/${id}`);
+      console.log(deleteClient);
+    }
+    catch(err){
+      console.log(err.message);
+    }
+  
+    // Update Redux store
+    dispatch(addClient(updatedClients));
+
+
+    toast.success("User deleted successfully");
+  };
   useEffect(() => {
     getClients();
   }, []);
@@ -47,16 +66,27 @@ const Table = () => {
             <th className="py-2 px-4 border-b">Status</th>
           </tr>
         </thead>
-       <tbody>
+        <tbody>
           {/* Add table rows and data here */}
-          {clients.map((data,index) => {
-           return <tr className="text-center my-10 " key={index}>
-              <td className="py-2 px-4 border-b ">{data?.name}</td>
-              <td className="py-2 px-4 border-b ">{(data.dateOfBirth != 0)?(data.dateOfBirth.slice(0,10)):(data.dateOfBirth)}</td>
-              <td className="py-2 px-4 border-b ">{data?.phone}</td>
-              <td className="py-2 px-4 border-b ">{data?.gymPlan}</td>
-              <td className="py-1 px-2 border-b text-green-600 bg-green-50 rounded-2xl">Active</td>
-            </tr>
+          {clients.map((data, index) => {
+            return (
+              <tr className="text-center my-10 " key={index}>
+                <td className="py-2 px-4 border-b ">{data?.name}</td>
+                <td className="py-2 px-4 border-b ">
+                  {data.dateOfBirth != 0
+                    ? data.dateOfBirth.slice(0, 10)
+                    : data.dateOfBirth}
+                </td>
+                <td className="py-2 px-4 border-b ">{data?.phone}</td>
+                <td className="py-2 px-4 border-b ">{data?.gymPlan}</td>
+                <td className="py-1 px-2 border-b text-green-600 bg-green-50 rounded-2xl">
+                  Active
+                </td>
+                <td>
+                  <MdDelete className="opacity-60 hover:scale-110 text-center duration-500 hover:shadow-xl cursor-pointer" onClick={()=>handleDeleteUser(index)}/>
+                </td>{" "}
+              </tr>
+            );
           })}
 
           {/* Add more rows as needed */}
@@ -68,11 +98,3 @@ const Table = () => {
 };
 
 export { Table }; // Named export of the Tables component
-
-
-
-
-
-
-
-
