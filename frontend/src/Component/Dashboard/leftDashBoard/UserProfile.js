@@ -13,7 +13,8 @@ const UserProfile = () => {
 
   const updateUserInfo = async()=>{
     dispatch(addUserData(user));
-    const updatedUser = await axios.put("http://localhost:4000/api/v1/updateuser",{...userInfo});
+    console.log(user);
+    const updatedUser = await axios.put("http://localhost:4000/api/v1/updateuser",{...user});
     dispatch(addUserData(updatedUser.data.message));
   }
 

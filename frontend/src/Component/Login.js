@@ -37,6 +37,7 @@ export const Login = () => {
       
       if (savedRes.status === 200) {
         dispatch(addUserData(savedRes.data.user))
+        console.log(savedRes.data.user);
         navigate("/dashboard/navbar");
       }
     } catch (err) {
