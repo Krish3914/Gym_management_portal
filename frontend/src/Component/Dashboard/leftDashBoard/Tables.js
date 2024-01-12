@@ -75,7 +75,7 @@ const Table = () => {
           {/* Add table rows and data here */}
           {clients.map((data, index) => {
             return (
-              <tr className="text-center my-10 " key={index}>
+              <tr className="text-center my-10 group" key={index}>
                 <td className="py-2 px-4 border-b ">{data?.name}</td>
                 <td className="py-2 px-4 border-b ">
                   {/* {data.dateOfBirth != 0
@@ -84,20 +84,19 @@ const Table = () => {
                 </td>
                 <td className="py-2 px-4 border-b ">{data?.phone}</td>
                 <td className="py-2 px-4 border-b ">{data?.gymPlan}</td>
-                <td className="py-1 px-2 border-b text-green-600 bg-green-50 rounded-2xl">
+                <td className=" text-green-600 rounded-2xl">
                   Active
                 </td>
-                <td>
+                <td className="opacity-0 group-hover:opacity-100 transition-opacity flex flex-col justify-center items-center gap-2">
                   <MdDelete
-                    className="opacity-60 hover:scale-110 text-center duration-500 hover:shadow-xl cursor-pointer"
+                    className="opacity-60 hover:scale-110 duration-500 hover:shadow-xl cursor-pointer"
                     onClick={() => handleDeleteUser(index)}
                   />
+                  <div className="text-center cursor-pointer hover:scale-105 duration-700">Edit</div>
                 </td>{" "}
               </tr>
             );
           })}
-
-          {/* Add more rows as needed */}
         </tbody>
         <ToastContainer />
       </table>
