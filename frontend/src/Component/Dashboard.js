@@ -9,11 +9,19 @@ import { addUserData } from "./redux/UserSlice";
 
 export const Dashboard = () => {
   const dispatch = useDispatch();
+  let userRedux = useSelector((store)=>store.user.userData)
   const navigate = useNavigate();
   const checkValidity = async () => {
+    const localStorageToken = localStorage.getItem('token');
+    console.log("this is local token from session storage",localStorageToken);
     try {
-      const result = await axios.get("http://localhost:4000/api/v1/dashboard");
-      dispatch(addUserData(result.data.user));
+      const result = await axios.get("http://localhost:4000/api/v1/dashboard",{ headers: {
+        Authorization: `Bearer ${localStorageToken}`,
+      },});
+     
+      console.log(result);
+      console.log("this is userRedux",userRedux[0])
+      // dispatch(addUserData(result.data.user));
     } catch (err) {
       console.log(err.message)
       toast.warning(err.message);
@@ -28,7 +36,7 @@ export const Dashboard = () => {
     <div className="flex bg-slate-100 ">
       <div className="w-2/12">
         <LeftDashboard />
-      </div>
+      </div>{console.log("priting for testin")}
       <div className="w-9/12 mx-auto">
         <Searchbar />
         <Outlet />

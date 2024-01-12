@@ -1,9 +1,12 @@
 import axios from "axios";
-import { useState } from "react";
+import {  useState } from "react";
+import { useSelector } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export const Newadduser = () => {
+  //accessing user(Owners) id from the store
+  const userId = useSelector((store)=>store.user.userData[0]._id);
   const [userInfo, setuserInfo] = useState({
     name: "",
     email: "",
@@ -13,7 +16,6 @@ export const Newadduser = () => {
   });
 
   const addTraineeurl = "http://localhost:4000/api/v1/addtrainee";
-  
   const emptyForm = ()=>{
     // console.log("inside the empty form");
     setuserInfo({
@@ -32,18 +34,19 @@ export const Newadduser = () => {
       phone: data.phone,
       dateOfBirth: data.dob,
       gymPlan: data.plan,
+      owner:userId
     };
     try {
-      // console.log(realData);
+      console.log("check data to be passed",realData);
       const savedRes = await axios.post(addTraineeurl, { ...realData });
-      // console.log(savedRes);
+      console.log(savedRes);
       if (savedRes.status !== 200) {
         throw new Error(`Error with status response: ${savedRes.status}`);
       }
 
       toast.success("User Creates Successfully");
     } catch (err) {
-      // console.log(err);
+      console.log(err);
       toast.error("User Already Exists");
     }
     // console.log("calling empty form");
@@ -53,6 +56,7 @@ export const Newadduser = () => {
   };
 
   const clickHandle = (e) => {
+    console.log(userInfo);
     e.preventDefault();
     createUser(userInfo);
   };

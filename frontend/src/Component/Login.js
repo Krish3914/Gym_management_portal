@@ -4,7 +4,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addUserData } from "./redux/UserSlice";
 
 export const Login = () => {
@@ -12,6 +12,7 @@ export const Login = () => {
     email: "",
     password: "",
   });
+  const selectorUser = useSelector((store)=>store.user);
   const dispatch = useDispatch();
   const loginUrl = "http://localhost:4000/api/v1/login";
 
@@ -37,7 +38,9 @@ export const Login = () => {
       
       if (savedRes.status === 200) {
         dispatch(addUserData(savedRes.data.user))
+        localStorage.setItem("token",savedRes.data.user.token);
         console.log(savedRes.data.user);
+        console.log("user who is logged in from redux",selectorUser);
         navigate("/dashboard/navbar");
       }
     } catch (err) {
