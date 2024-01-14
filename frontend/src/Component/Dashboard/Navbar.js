@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 export const Navbar = () => {
-  const userName = useSelector((state)=>state.user.userData[0]?.name);
+  const userName = useSelector((state) => state.user.userData.name);
   return (
     <div className="">
       <table className=" flex flex-col gap-10">
@@ -11,14 +12,13 @@ export const Navbar = () => {
             <div className="bg-white rounded-xl p-2">
               <div className="flex">
                 <div className="flex mx-auto flex-col gap-4 mt-2">
-                  <span
-                    className="text-purple-400 font-medium text-lg"
-                  >
+                  <span className="text-purple-400 font-medium text-lg">
                     WelCome <span className="text-xl ">{userName}🎉</span>
                   </span>
                   <span className="opacity-65">
-                    You have done<span className="font-semibold leading-3"> 0% </span>{" "}
-                    more sales today. Check your new badge in your profile.
+                    You have done
+                    <span className="font-semibold leading-3"> 0% </span> more
+                    sales today. Check your new badge in your profile.
                   </span>
                   <span className="w-3/12 p-1 border-2 border-purple-300 text-purple-400  hover:bg-purple-600 text-center hover:text-white rounded-md duration-500 ">
                     {" "}
@@ -38,7 +38,9 @@ export const Navbar = () => {
                 src={require("../../images/icons/unicons/chart-success.png")}
                 className="w-10"
               />
-              <h2 className="text-lg">Users</h2>
+              <Link to={"/usercard"}>
+                <h2 className="text-lg">Users</h2>
+              </Link>
               <span className="text-2xl font-medium opacity-65">2</span>
               <span className="text-green-400 ">0%</span>
             </div>
@@ -49,7 +51,9 @@ export const Navbar = () => {
                 src={require("../../images/icons/unicons/cc-primary.png")}
                 className="w-10"
               />
-              <h2 className="text-lg">sales</h2>
+              <Link to={"/salescard"}>
+                <h2 className="text-lg">sales</h2>
+              </Link>
               <span className="text-2xl font-medium opacity-65">0</span>
               <span className="text-green-400 ">0%</span>
             </div>
@@ -63,7 +67,9 @@ export const Navbar = () => {
                 src={require("../../images/icons/unicons/cc-success.png")}
                 className="w-10"
               />
-              <h2 className="text-lg">Payments</h2>
+              <Link to={"/paymentscard"}>
+                <h2 className="text-lg">Payments</h2>
+              </Link>
               <span className="text-2xl font-medium opacity-65">0</span>
               <span className="text-green-400 ">0%</span>
             </div>
@@ -74,7 +80,9 @@ export const Navbar = () => {
                 src={require("../../images/icons/unicons/paypal.png")}
                 className="w-10"
               />
-              <h2 className="text-lg">Transactions</h2>
+              <Link to={"/transactioncard"}>
+                <h2 className="text-lg">Transactions</h2>
+              </Link>
               <span className="text-2xl font-medium opacity-65">0</span>
               <span className="text-red-400 ">0%</span>
             </div>
@@ -84,54 +92,71 @@ export const Navbar = () => {
           <td className="w-8/12"></td>
           <td className="flex flex-col w-4/12 gap-4 bg-white p-4">
             <div className="flex gap-4">
-            <img src={require("../../images/icons/unicons/paypal.png")} className="w-10 h-9 " />
-            <div className="flex flex-col text-xs">
-              <span>Paypal</span>
-              <span className="text-sm">Send money</span>
-            </div>
-            <div>82Usd</div>
-            </div>
-            <div className="flex gap-4">
-            <img src={require("../../images/icons/unicons/wallet.png")} className="w-10 h-9 " />
-            <div className="flex flex-col text-xs">
-              <span>Send Wallet</span>
-              <span className="text-sm">Mac'D</span>
-            </div>
-            <div>812Usd</div>
+              <img
+                src={require("../../images/icons/unicons/paypal.png")}
+                className="w-10 h-9 "
+              />
+              <div className="flex flex-col text-xs">
+                <span>Paypal</span>
+                <span className="text-sm">Send money</span>
+              </div>
+              <div>82Usd</div>
             </div>
             <div className="flex gap-4">
-            <img src={require("../../images/icons/unicons/cc-primary.png")} className="w-10 h-9 " />
-            <div className="flex flex-col text-xs">
-              <span>Transfer</span>
-              <span className="text-sm">Refund</span>
-            </div>
-            <div>82Usd</div>
-            </div>
-            <div className="flex gap-4">
-            <img src={require("../../images/icons/unicons/cc-success.png")} className="w-10 h-9 " />
-            <div className="flex flex-col text-xs">
-              <span>Credit Card</span>
-              <span className="text-sm">Orderd books</span>
-            </div>
-            <div>82Usd</div>
+              <img
+                src={require("../../images/icons/unicons/wallet.png")}
+                className="w-10 h-9 "
+              />
+              <div className="flex flex-col text-xs">
+                <span>Send Wallet</span>
+                <span className="text-sm">Mac'D</span>
+              </div>
+              <div>812Usd</div>
             </div>
             <div className="flex gap-4">
-            <img src={require("../../images/icons/unicons/chart-success.png")} className="w-10 h-9 " />
-            <div className="flex flex-col text-xs">
-              <span>Wallet</span>
-              <span className="text-sm">Star Bucks</span>
-            </div>
-            <div>82Usd</div>
+              <img
+                src={require("../../images/icons/unicons/cc-primary.png")}
+                className="w-10 h-9 "
+              />
+              <div className="flex flex-col text-xs">
+                <span>Transfer</span>
+                <span className="text-sm">Refund</span>
+              </div>
+              <div>82Usd</div>
             </div>
             <div className="flex gap-4">
-            <img src={require("../../images/icons/unicons/wallet-info.png")} className="w-10 h-9 " />
-            <div className="flex flex-col text-xs">
-              <span>Master card</span>
-              <span className="text-sm">Ordered Food</span>
+              <img
+                src={require("../../images/icons/unicons/cc-success.png")}
+                className="w-10 h-9 "
+              />
+              <div className="flex flex-col text-xs">
+                <span>Credit Card</span>
+                <span className="text-sm">Orderd books</span>
+              </div>
+              <div>82Usd</div>
             </div>
-            <div>82Usd</div>
+            <div className="flex gap-4">
+              <img
+                src={require("../../images/icons/unicons/chart-success.png")}
+                className="w-10 h-9 "
+              />
+              <div className="flex flex-col text-xs">
+                <span>Wallet</span>
+                <span className="text-sm">Star Bucks</span>
+              </div>
+              <div>82Usd</div>
             </div>
-
+            <div className="flex gap-4">
+              <img
+                src={require("../../images/icons/unicons/wallet-info.png")}
+                className="w-10 h-9 "
+              />
+              <div className="flex flex-col text-xs">
+                <span>Master card</span>
+                <span className="text-sm">Ordered Food</span>
+              </div>
+              <div>82Usd</div>
+            </div>
           </td>
         </tr>
       </table>

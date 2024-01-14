@@ -4,11 +4,9 @@ import { useEffect } from "react";
 import { Searchbar } from "./Searchbar";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-import { addUserData } from "./redux/UserSlice";
+import { useSelector } from "react-redux";
 
 export const Dashboard = () => {
-  const dispatch = useDispatch();
   let userRedux = useSelector((store)=>store.user.userData)
   const navigate = useNavigate();
   const checkValidity = async () => {
@@ -20,8 +18,7 @@ export const Dashboard = () => {
       },});
      
       console.log(result);
-      console.log("this is userRedux",userRedux[0])
-      // dispatch(addUserData(result.data.user));
+      console.log("this is userRedux",userRedux);
     } catch (err) {
       console.log(err.message)
       toast.warning(err.message);

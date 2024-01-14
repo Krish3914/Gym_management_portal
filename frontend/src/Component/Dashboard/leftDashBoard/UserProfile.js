@@ -5,7 +5,8 @@ import axios from "axios";
 import { addUserData } from "../../redux/UserSlice";
 
 const UserProfile = () => {
-  const userInfo = useSelector((store) => store.user.userData[0]);
+  const userInfo = useSelector((store) => store.user.userData);
+  console.log("this is user info fetched from user store",userInfo);
   const dispatch = useDispatch();
 
   const [user, setUser] = useState(userInfo);
@@ -51,7 +52,7 @@ const UserProfile = () => {
   }, [userInfo]);
 
   return user === undefined ? (
-    <div className="hidden"></div>
+    <div className="">we will appear soon</div>
   ) : (
     <div className="flex flex-col gap-5 h-screen">
       <div className="flex w-full gap-8">

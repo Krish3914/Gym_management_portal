@@ -2,8 +2,8 @@ import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 
 export const Template = () => {
-    const userName = useSelector((store)=>store.user.userData[0]);
-    console.log(userName);
+  // Accessing the name of user from redux Store
+    const userName = useSelector((store)=>store.user.userData.name);
   return (
     <div className="absolute text-center right-10 top-14 flex w-1/12 p-4 bg-white gap-4 z-20 justify-between rounded-xl shadow-xl flex-col">
       <div className="flex justify-center flex-row gap-5 ">
@@ -11,7 +11,7 @@ export const Template = () => {
           src={require("../images/avatars/6.png")}
           className="w-8 rounded-full "
         />
-        <div className="self-center">{userName.name}</div>
+        <div className="self-center">{userName}</div>
       </div>
       <NavLink to={"user"}>
         {" "}

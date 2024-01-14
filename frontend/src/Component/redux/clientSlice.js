@@ -7,7 +7,7 @@ const clientSlice = createSlice({
     },
     reducers:{
         addClient:(state,action)=>{
-            state.client = [action.payload];
+            state.client = [...state.client, action.payload];
         }
     }
 })
@@ -15,4 +15,3 @@ const clientSlice = createSlice({
 
 export const { addClient } = clientSlice.actions;
 export default clientSlice.reducer;
-

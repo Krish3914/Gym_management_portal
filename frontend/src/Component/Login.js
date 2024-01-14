@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUserData } from "./redux/UserSlice";
 
 export const Login = () => {
-  const [signUpData, setSignInData] = useState({
+  const [signInData, setSignInData] = useState({
     email: "",
     password: "",
   });
@@ -37,9 +37,10 @@ export const Login = () => {
       //adding the user information in the userSlice redux
       
       if (savedRes.status === 200) {
-        dispatch(addUserData(savedRes.data.user))
+        const user = savedRes.data.user;
+        dispatch(addUserData(user));
         localStorage.setItem("token",savedRes.data.user.token);
-        console.log(savedRes.data.user);
+        console.log(user);
         console.log("user who is logged in from redux",selectorUser);
         navigate("/dashboard/navbar");
       }
@@ -52,15 +53,14 @@ export const Login = () => {
   const signInHandle = (e) => {
     e.preventDefault();
     try {
-      if (!signUpData.email || !signUpData.password) {
+      if (!signInData.email || !signInData.password) {
         toast.warning("Please Fill All the details");
         throw new Error("some error");
       }
 
-      LoginUser(signUpData);
-      console.log(
-        `email:  ${signUpData.email}, password:${signUpData.password}`
-      );
+
+      //if all details are filled then it called LoginUser function
+      LoginUser(signInData);
     } catch (err) {
       console.log(err.status);
     }
@@ -87,7 +87,7 @@ export const Login = () => {
             type="text"
             name="email"
             id="mailoruser"
-            value={signUpData.email}
+            value={signInData.email}
             placeholder="Enter your Email Or username"
             className=" border-2 p-2 rounded-md"
             onChange={changeHandle}
@@ -104,7 +104,7 @@ export const Login = () => {
             type="password"
             id="pass"
             name="password"
-            value={signUpData.password}
+            value={signInData.password}
             placeholder="Enter your Password"
             className="border-2 p-2 rounded-md"
             onChange={changeHandle}
