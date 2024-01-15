@@ -14,13 +14,13 @@ const Table = () => {
   const dispatch = useDispatch();
   console.log(ownerId);
 
-  const clients = selector[selector.length - 1];
-  console.log(selector);
+  console.log("this is client data",selector);
+  const clients = selector;
+ 
 
   const[userData,setUserdata] =useState(clients);
   const getClients = async () => {
     try {
-      console.log("making db call")
       const result = await axios.get(
         `http://localhost:4000/api/v1/clients/${ownerId}`,
         {
@@ -124,7 +124,7 @@ const Table = () => {
                 <td className="py-2 px-4 border-b w-1/2">
                   <input
                     type="text"
-                    value={userData[index]?.dateOfBirth}
+                    value={data?.dateOfBirth}
                     className="text-center w-1/2"
                     onChange={(e)=>handleInputChange(index,"dateOfBirth",e.target.value)}
                   />
@@ -132,7 +132,7 @@ const Table = () => {
                 <td className="py-2 px-4 border-b ">
                   <input
                     type="number"
-                    value={userData[index]?.phone}
+                    value={data?.phone}
                     className="text-center "
                     onChange={(e)=>handleInputChange(index,"phone",e.target.value)}
                   />
@@ -140,7 +140,7 @@ const Table = () => {
                 <td className="py-2 px-4 border-b ">
                   <input
                     type="text"
-                    value={userData[index]?.gymPlan}
+                    value={data?.gymPlan}
                     className="text-center"
                   />
                 </td>

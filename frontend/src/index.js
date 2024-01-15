@@ -17,6 +17,7 @@ import { SalesCard } from "./Component/SalesCard";
 import { UserCard } from "./Component/UserCard";
 import { TransactionsCard } from "./Component/TransactionsCard";
 import { PaymentsCard } from "./Component/PaymentsCard";
+import { ClientsTable } from "./Component/Dashboard/leftDashBoard/ClientsTable";
 
 const App = () => {
   return (
@@ -57,30 +58,24 @@ const router = createBrowserRouter([
           },
           {
             path: "tables",
-            element: <Table />,
+            element: <ClientsTable />,
           },
           {
             path: "user",
             element: <UserProfile />,
           },
-        ],
-      },
       {
-        path: "/salescard",
+        path: "salescard",
         element: <SalesCard />,
       },
       {
-        path: "/usercard",
-        element: <UserCard />,
-      },
-      {
-        path: "/transactioncard",
+        path: "transactioncard",
         element: <TransactionsCard />,
       },
       {
-        path: "/paymentscard",
+        path: "paymentscard",
         element: <PaymentsCard />,
-      },
+      },]}
     ],
   },
 ]);

@@ -4,14 +4,18 @@ const clientSlice = createSlice({
     name:"clientSlice",
     initialState:{
         client:[],
+        clientSearch:[]
     },
     reducers:{
         addClient:(state,action)=>{
-            state.client = [...state.client, action.payload];
+            state.client = action.payload;
+        },
+        addClientSearch:(state,action)=>{
+            state.clientSearch = action.payload;
         }
     }
 })
 
 
-export const { addClient } = clientSlice.actions;
+export const { addClient,addClientSearch } = clientSlice.actions;
 export default clientSlice.reducer;

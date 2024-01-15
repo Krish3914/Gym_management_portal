@@ -60,6 +60,10 @@ export const Newadduser = () => {
   const clickHandle = (e) => {
     console.log(userInfo);
     e.preventDefault();
+    if(userInfo.name == undefined || userInfo?.email == undefined || userInfo.dob == undefined || userInfo?.plan == undefined || userInfo.phone?.length !=10){
+      toast.warning("please fill details correctly");
+      return;
+    }
     createUser(userInfo);
   };
 

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const userName = useSelector((state) => state.user.userData.name);
+  const noOfUsers = useSelector((state) => state.client.client);
   return (
     <div className="">
       <table className=" flex flex-col gap-10">
@@ -38,10 +39,10 @@ export const Navbar = () => {
                 src={require("../../images/icons/unicons/chart-success.png")}
                 className="w-10"
               />
-              <Link to={"/usercard"}>
+              <Link to={"/dashboard/tables"}>
                 <h2 className="text-lg">Users</h2>
               </Link>
-              <span className="text-2xl font-medium opacity-65">2</span>
+              <span className="text-2xl font-medium opacity-65">{noOfUsers?.length}</span>
               <span className="text-green-400 ">0%</span>
             </div>
           </td>
@@ -51,8 +52,8 @@ export const Navbar = () => {
                 src={require("../../images/icons/unicons/cc-primary.png")}
                 className="w-10"
               />
-              <Link to={"/salescard"}>
-                <h2 className="text-lg">sales</h2>
+              <Link to={"/dashboard/salescard"}>
+                <h2 className="text-lg">Alerts</h2>
               </Link>
               <span className="text-2xl font-medium opacity-65">0</span>
               <span className="text-green-400 ">0%</span>
@@ -67,8 +68,8 @@ export const Navbar = () => {
                 src={require("../../images/icons/unicons/cc-success.png")}
                 className="w-10"
               />
-              <Link to={"/paymentscard"}>
-                <h2 className="text-lg">Payments</h2>
+              <Link to={"/dashboard/paymentscard"}>
+                <h2 className="text-lg text-shadow-md">Payments</h2>
               </Link>
               <span className="text-2xl font-medium opacity-65">0</span>
               <span className="text-green-400 ">0%</span>
@@ -80,7 +81,7 @@ export const Navbar = () => {
                 src={require("../../images/icons/unicons/paypal.png")}
                 className="w-10"
               />
-              <Link to={"/transactioncard"}>
+              <Link to={"/dashboard/transactioncard"}>
                 <h2 className="text-lg">Transactions</h2>
               </Link>
               <span className="text-2xl font-medium opacity-65">0</span>
