@@ -3,7 +3,6 @@ import {  useId, useState } from "react";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ShimmerTable } from "./ShimmerTable";
 import { Spinner } from "../../Spinner";
 
 export const Newadduser = () => {
@@ -14,7 +13,7 @@ export const Newadduser = () => {
     email: "",
     dob: "",
     plan: "month",
-    phone: undefined,
+    phone: null,
   });
 
   const addTraineeurl = "http://localhost:4000/api/v1/addtrainee";
@@ -25,7 +24,7 @@ export const Newadduser = () => {
     email: "",
     dob: "",
     plan: "month",
-    phone: undefined,
+    phone: "",
     })
   };
 
@@ -87,6 +86,7 @@ export const Newadduser = () => {
           name="name"
           type="text"
           placeholder="Name"
+          value={userInfo.name}
           className="rounded p-2 w-7/12 border-2"
           onChange={changeHandle}
         />
@@ -101,6 +101,7 @@ export const Newadduser = () => {
           name="phone"
           type="number"
           placeholder="1201402"
+          value={userInfo.phone}
           className="rounded p-2 w-7/12 border-2"
           onChange={changeHandle}
         />
@@ -115,6 +116,7 @@ export const Newadduser = () => {
           name="dob"
           type="date"
           placeholder="Date of birth"
+          value={userInfo.dob}
           className="rounded p-2 w-7/12 border-2"
           onChange={changeHandle}
         />
@@ -129,6 +131,7 @@ export const Newadduser = () => {
           name="email"
           type="email"
           placeholder="abc@gmail.com"
+          value={userInfo.email}
           className="rounded p-2 w-7/12 border-2"
           onChange={changeHandle}
         />

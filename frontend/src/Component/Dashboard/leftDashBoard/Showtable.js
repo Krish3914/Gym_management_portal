@@ -1,3 +1,6 @@
+// show table will rendered after search in the table
+
+
 import { useDispatch, useSelector } from "react-redux";
 import { addClientSearch } from "../../redux/clientSlice";
 

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 export const Navbar = () => {
   const userName = useSelector((state) => state.user.userData.name);
+  const role = useSelector((state) => state?.user?.userData?.role);
   const noOfUsers = useSelector((state) => state.client.client);
   return (
     <div className="">
@@ -13,8 +14,8 @@ export const Navbar = () => {
             <div className="bg-white rounded-xl p-2">
               <div className="flex">
                 <div className="flex mx-auto flex-col gap-4 mt-2">
-                  <span className="text-purple-400 font-medium text-lg">
-                    WelCome <span className="text-xl ">{userName}🎉</span>
+                  <span className="text-purple-400 font-medium text-xl">
+                    WelCome <span className="text-xl ">{role?role:userName}🎉</span>
                   </span>
                   <span className="opacity-65">
                     You have done

@@ -4,12 +4,17 @@ import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
+import { IoEyeOutline } from "react-icons/io5";
+import { FaRegEyeSlash } from "react-icons/fa";
 
 export const Signup = () => {
   const signupUrl = "http://localhost:4000/api/v1/signup";
   const [signupData, setsignUpData] = useState({
       uName:"",email:"",password:""
   });
+
+  const[showPassword,setshowPassword] = useState(false);
+
   const emptyInputs = ()=>{
 
     setsignUpData({
@@ -100,15 +105,21 @@ export const Signup = () => {
         </div>
         <div className="flex flex-col">
           <label htmlFor="pass">Password</label>
+
+          <div className="relative">
           <input
-            type="password"
+            type={!showPassword?"password":"text"}
             id="pass"
             name="password"
             value={signupData.password}
             placeholder="Enter your Password"
-            className="border-2 p-2 rounded-md"
+            className="border-2 p-2 rounded-md w-full" 
             onChange={changeHandle}
           />
+          {showPassword?<IoEyeOutline className="absolute right-3 top-3 text-[#696cff] cursor-pointer text-xl" onClick={()=>setshowPassword(!showPassword)}/>:<FaRegEyeSlash className="absolute right-3 top-3 text-[#696cff] cursor-pointer text-xl" onClick={()=>setshowPassword(!showPassword)}/>}
+      
+          </div>
+
         </div>
         <div className="flex gap-2 font-light">
           <input type="checkbox" id="policy" className="w-4 rounded-md" />

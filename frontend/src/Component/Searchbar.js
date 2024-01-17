@@ -30,7 +30,7 @@ export const Searchbar = () => {
         <CiSearch className="ml-4 text-xl" />
         <input
           className="p-1 border-none"
-          placeholder="Search.."
+          placeholder="Search by name, phone etc.."
           value={searchData}
           onChange={changeHandle}
         />

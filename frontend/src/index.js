@@ -18,7 +18,6 @@ import { UserCard } from "./Component/UserCard";
 import { TransactionsCard } from "./Component/TransactionsCard";
 import { PaymentsCard } from "./Component/PaymentsCard";
 import { ClientsTable } from "./Component/Dashboard/leftDashBoard/ClientsTable";
-
 const App = () => {
   return (
     <Provider store={userStore}>

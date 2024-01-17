@@ -6,12 +6,15 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserData } from "./redux/UserSlice";
+import { IoEyeOutline } from "react-icons/io5";
+import { FaRegEyeSlash } from "react-icons/fa";
 
 export const Login = () => {
   const [signInData, setSignInData] = useState({
     email: "",
     password: "",
   });
+  const[showEye,setshowEye] = useState(false);
   const selectorUser = useSelector((store)=>store.user);
   const dispatch = useDispatch();
   const loginUrl = "http://localhost:4000/api/v1/login";
@@ -40,8 +43,6 @@ export const Login = () => {
         const user = savedRes.data.user;
         dispatch(addUserData(user));
         localStorage.setItem("token",savedRes.data.user.token);
-        console.log(user);
-        console.log("user who is logged in from redux",selectorUser);
         navigate("/dashboard/navbar");
       }
     } catch (err) {
@@ -67,7 +68,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="h-screen bg-slate-100 flex justify-center items-center">
+    <div className="h-screen bg-slate-100 flex justify-center items-center relative">
       <div className="w-3/12 flex flex-col gap-5 rounded-lg bg-white p-5 my-2 relative">
         <div className="flex self-center gap-2 ">
           <img src={iconImage} className="w-10 self-center"></img>
@@ -100,15 +101,19 @@ export const Login = () => {
               Forgot Password?
             </span>
           </div>
+          <div className="relative">
           <input
-            type="password"
+            type={showEye?"text":"password"}
             id="pass"
             name="password"
             value={signInData.password}
             placeholder="Enter your Password"
-            className="border-2 p-2 rounded-md"
+            className="border-2 p-2 w-full rounded-md"
             onChange={changeHandle}
+            
           />
+          {showEye?<IoEyeOutline className="absolute right-3 top-3 text-[#696cff] cursor-pointer text-xl" onClick={()=>setshowEye(!showEye)}/>:<FaRegEyeSlash className="absolute right-3 top-3 text-[#696cff] cursor-pointer text-xl" onClick={()=>setshowEye(!showEye)}/>}
+          </div>
         </div>
         <div className="flex gap-2 font-light">
           <input type="checkbox" id="remember" className="w-4 rounded-md" />
