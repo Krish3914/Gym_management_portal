@@ -29,7 +29,7 @@ export const Searchbar = () => {
       <div className=" p-4 flex items-center w-full gap-4">
         <CiSearch className="ml-4 text-xl" />
         <input
-          className="p-1 border-none"
+          className=" searchinputs p-1 focus:border-none"
           placeholder="Search by name, phone etc.."
           value={searchData}
           onChange={changeHandle}

@@ -14,8 +14,8 @@ export const Login = () => {
     email: "",
     password: "",
   });
-  const[showEye,setshowEye] = useState(false);
-  const selectorUser = useSelector((store)=>store.user);
+  const [showEye, setshowEye] = useState(false);
+  const selectorUser = useSelector((store) => store.user);
   const dispatch = useDispatch();
   const loginUrl = "http://localhost:4000/api/v1/login";
 
@@ -38,11 +38,11 @@ export const Login = () => {
     try {
       const savedRes = await axios.post(loginUrl, { ...realData });
       //adding the user information in the userSlice redux
-      
+
       if (savedRes.status === 200) {
         const user = savedRes.data.user;
         dispatch(addUserData(user));
-        localStorage.setItem("token",savedRes.data.user.token);
+        localStorage.setItem("token", savedRes.data.user.token);
         navigate("/dashboard/navbar");
       }
     } catch (err) {
@@ -58,7 +58,6 @@ export const Login = () => {
         toast.warning("Please Fill All the details");
         throw new Error("some error");
       }
-
 
       //if all details are filled then it called LoginUser function
       LoginUser(signInData);
@@ -97,22 +96,33 @@ export const Login = () => {
         <div className="flex flex-col gap-2">
           <div className="flex justify-between ">
             <label htmlFor="pass">Password</label>
-            <span className="cursor-pointer text-[#696cff] font-normal">
-              Forgot Password?
-            </span>
+            <Link to={"/forgotpassword"}>
+              <span className="cursor-pointer text-[#696cff] font-normal">
+                Forgot Password?
+              </span>
+            </Link>
           </div>
           <div className="relative">
-          <input
-            type={showEye?"text":"password"}
-            id="pass"
-            name="password"
-            value={signInData.password}
-            placeholder="Enter your Password"
-            className="border-2 p-2 w-full rounded-md"
-            onChange={changeHandle}
-            
-          />
-          {showEye?<IoEyeOutline className="absolute right-3 top-3 text-[#696cff] cursor-pointer text-xl" onClick={()=>setshowEye(!showEye)}/>:<FaRegEyeSlash className="absolute right-3 top-3 text-[#696cff] cursor-pointer text-xl" onClick={()=>setshowEye(!showEye)}/>}
+            <input
+              type={showEye ? "text" : "password"}
+              id="pass"
+              name="password"
+              value={signInData.password}
+              placeholder="Enter your Password"
+              className="border-2 p-2 w-full rounded-md"
+              onChange={changeHandle}
+            />
+            {showEye ? (
+              <IoEyeOutline
+                className="absolute right-3 top-3 text-[#696cff] cursor-pointer text-xl"
+                onClick={() => setshowEye(!showEye)}
+              />
+            ) : (
+              <FaRegEyeSlash
+                className="absolute right-3 top-3 text-[#696cff] cursor-pointer text-xl"
+                onClick={() => setshowEye(!showEye)}
+              />
+            )}
           </div>
         </div>
         <div className="flex gap-2 font-light">

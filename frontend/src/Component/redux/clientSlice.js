@@ -12,10 +12,14 @@ const clientSlice = createSlice({
         },
         addClientSearch:(state,action)=>{
             state.clientSearch = action.payload;
-        }
+        },
+        removeClient: (state, action) => {
+            state.client = state.client.filter((client) => client._id !== action.payload);
+          },
+        
     }
 })
 
 
-export const { addClient,addClientSearch } = clientSlice.actions;
+export const { addClient,addClientSearch,removeClient } = clientSlice.actions;
 export default clientSlice.reducer;

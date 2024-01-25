@@ -32,6 +32,20 @@ export const LeftDashboard = () => {
               </div>
             </Link>
           </div>
+          <div className="bg-purple-200 p-3 font-medium opacity-80 rounded-md flex justify-between flex-col gap-3">
+            <Link to={"/dashboard/tables"}>
+              <div className="flex justify-between items-center cursor-pointer adduser">
+                Support
+              </div>
+            </Link>
+          </div>
+          <div className="bg-purple-200 p-3 font-medium opacity-80 rounded-md flex justify-between flex-col gap-3">
+            <Link to={"/dashboard/tables"}>
+              <div className="flex justify-between items-center cursor-pointer adduser">
+                FAQ
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </>

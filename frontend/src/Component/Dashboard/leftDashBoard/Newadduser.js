@@ -37,17 +37,17 @@ export const Newadduser = () => {
       gymPlan: data.plan,
       owner:userId
     };
+
     try {
-      console.log("check data to be passed",realData);
+      // console.log("check data to be passed",realData);
       const savedRes = await axios.post(addTraineeurl, { ...realData });
-      console.log(savedRes);
+      console.log("server gives us this response ",savedRes);
       if (savedRes.status !== 200) {
         throw new Error(`Error with status response: ${savedRes.status}`);
       }
-
       toast.success("User Creates Successfully");
     } catch (err) {
-      console.log(err);
+      // console.log(err);
       toast.error("User Already Exists");
     }
     // console.log("calling empty form");
@@ -57,8 +57,8 @@ export const Newadduser = () => {
   };
 
   const clickHandle = (e) => {
-    console.log(userInfo);
     e.preventDefault();
+    console.log("printing userInfo ",userInfo);
     if(userInfo.name == undefined || userInfo?.email == undefined || userInfo.dob == undefined || userInfo?.plan == undefined || userInfo.phone?.length !=10){
       toast.warning("please fill details correctly");
       return;

@@ -6,15 +6,13 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addClient } from "../../redux/clientSlice";
-import { MdDelete } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
 
 const Table = () => {
   const selector = useSelector((store) => store.client.client);
   const ownerId = useSelector((store) => store.user.userData?._id);
   const dispatch = useDispatch();
-  console.log(ownerId);
-
+  // console.log(ownerId);
   console.log("this is client data", selector);
   const clients = selector;
 
@@ -31,7 +29,7 @@ const Table = () => {
         }
       );
       const { message } = result.data;
-      console.log("we will pass abovw data into our store", message);
+      // console.log("we will pass above data into our store", message);
       dispatch(addClient(message));
 
       if (!result) {
@@ -45,23 +43,23 @@ const Table = () => {
 
   const handleDeleteUser = async (index) => {
     let updatedClients = [...clients];
-    
-    const deletedClient = updatedClients[index];
-    updatedClients = updatedClients.splice(index, 1);
-    const id = deletedClient._id; // Remove the client at the specified index
+    console.log("this is user before delete ",updatedClients)
+    const updatedClientsAfterDelete = updatedClients.filter((_, i) => i !== index);
+    const id = updatedClients[index]._id; // Remove the client at the specified index
     try {
       const deleteClient = await axios.delete(
         `http://localhost:4000/api/v1/deleteclient/${id}`
       );
-      console.log("delete client ",deleteClient);
+       // Update Redux store
+       
+    dispatch(addClient(updatedClientsAfterDelete));
+    console.log("this is user after delete ",updatedClientsAfterDelete);
+    setUserdata(updatedClientsAfterDelete);
+    toast.success("User deleted successfully");
     } catch (err) {
-      console.log(err.message);
+      return console.log(err.message);
     }
 
-    // Update Redux store
-    dispatch(addClient(updatedClients));
-
-    toast.success("User deleted successfully");
   };
 
   const handleInputChange = (index, key, value) => {
@@ -94,11 +92,13 @@ const Table = () => {
     }
   };
 
+
+
   useEffect(() => {
     getClients();
   }, []);
 
-  return selector.length == 0 ? (
+  return selector.length === 0 ? (
     <ShimmerTable />
   ) : (
     <div>
@@ -114,7 +114,7 @@ const Table = () => {
           </tr>
         </thead>
         <tbody>
-          {clients.map((data, index) => {
+          {selector.map((data, index) => {
             return (
               <tr className="text-center my-10 group" key={index}>
                 <td className="py-2 px-4 border-b">
@@ -190,80 +190,3 @@ const Table = () => {
 };
 
 export { Table }; // Named export of the Tables component
-
-// <table className="min-w-full bg-white border border-gray-300">
-//         <thead>
-//           <tr>
-//             <th className="py-2 px-4 border-b">Name</th>
-//             <th className="py-2 px-4 border-b">DOB</th>
-//             <th className="py-2 px-4 border-b">Phone</th>
-//             <th className="py-2 px-4 border-b">MemberShip Plan</th>
-//             <th className="py-2 px-4 border-b">Status</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {/* Add table rows and data here */}
-//           {clients.map((data, index) => {
-//             return (
-//               <tr className="text-center my-10 group" key={index}>
-//                 <td className="">
-//                   <input
-//                     type="text"
-//                     value={userData[index]?.name}
-//                     className="text-center"
-//                     readOnly={isReadonly}
-//                     onChange={(e) =>
-//                       handleInputChange(index, "name", e.target.value)
-
-//                     }
-//                   />
-//                 </td>
-//                 <td className="py-2 px-4 border-b w-1/2">
-//                   <input
-//                     type="text"
-//                     value={data?.dateOfBirth}
-//                     className="text-center w-1/2"
-//                     readOnly={isReadonly}
-//                     onChange={(e) =>
-//                       handleInputChange(index, "dateOfBirth", e.target.value)
-//                     }
-//                   />
-//                 </td>
-//                 <td className="py-2 px-4 border-b ">
-//                   <input
-//                     type="number"
-//                     value={data?.phone}
-//                     className="text-center"
-//                     readOnly={isReadonly}
-//                     onChange={(e) =>
-//                       handleInputChange(index, "phone", e.target.value)
-//                     }
-//                   />
-//                 </td>
-//                 <td className="py-2 px-4 border-b ">
-//                   <input
-//                     type="text"
-//                     value={data?.gymPlan}
-//                     className="text-center"
-//                   />
-//                 </td>
-//                 <td className=" text-green-600 rounded-2xl">Active</td>
-//                 <td className="flex flex-col gap-2">
-//                   <BsThreeDotsVertical className=" cursor-pointer"/>
-//                   <div className="hidden z-10 bg-white p-2 shadow-lg">
-//                   <span
-//                     className="hover:scale-110 duration-500 hover:shadow-xl cursor-pointer"
-//                     onClick={() => handleDeleteUser(index)}
-//                   >Delete</span>
-//                   <div className="text-center cursor-pointer hover:scale-105 duration-700" onClick={()=>handleSave(index)}>
-//                     {isReadonly?"Edit":"save"}
-//                   </div>
-//                   </div>
-//                 </td>{" "}
-
-//               </tr>
-//             );
-//           })}
-//         </tbody>
-//         <ToastContainer />
-//       </table>

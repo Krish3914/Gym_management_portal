@@ -6,6 +6,6 @@ export const ClientsTable = ()=>{
     const searchClients = useSelector((store)=>store.client.clientSearch);
     console.log("printing searchClients",searchClients);
     return(
-        (searchClients?.length == (0 || undefined)?<Table/>:<Showtable/>)
+        (searchClients?.length == 0 ?<Table/>:<Showtable/>)
     )
 }

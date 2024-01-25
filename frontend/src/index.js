@@ -8,16 +8,17 @@ import { Signup } from "./Component/Signup";
 import { Dashboard } from "./Component/Dashboard";
 import { Newadduser } from "./Component/Dashboard/leftDashBoard/Newadduser";
 import { Navbar } from "./Component/Dashboard/Navbar";
-import { Table } from "./Component/Dashboard/leftDashBoard/Tables";
 import { Provider } from "react-redux";
 import userStore, { persistor } from "./Component/redux/redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { UserProfile } from "./Component/Dashboard/leftDashBoard/UserProfile";
 import { SalesCard } from "./Component/SalesCard";
-import { UserCard } from "./Component/UserCard";
 import { TransactionsCard } from "./Component/TransactionsCard";
 import { PaymentsCard } from "./Component/PaymentsCard";
+import { ForgotPassword } from "./Component/ForgotPassword";
 import { ClientsTable } from "./Component/Dashboard/leftDashBoard/ClientsTable";
+import { Home } from "./Component/Home";
+import { ContactUs } from "./Component/ContactUs";
 const App = () => {
   return (
     <Provider store={userStore}>
@@ -35,13 +36,26 @@ const router = createBrowserRouter([
     element: <App />,
     path: "/",
     children: [
-      {
+        {
         path: "/",
+        element: <Home />,
+      },
+      {
+        path:"/contact",
+        element:<ContactUs/>
+      }
+      ,
+      {
+        path: "/signup",
         element: <Signup />,
       },
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path:"/forgotpassword",
+        element:<ForgotPassword/>
       },
       {
         path: "/dashboard",
