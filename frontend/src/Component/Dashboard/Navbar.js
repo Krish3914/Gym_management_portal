@@ -6,6 +6,7 @@ export const Navbar = () => {
   const userName = useSelector((state) => state.user.userData.name);
   const role = useSelector((state) => state?.user?.userData?.role);
   const noOfUsers = useSelector((state) => state.client.client);
+  const expiredUserCount = useSelector((state)=>state.client.expiredUserCount)
   return (
     <div className="">
       <table className=" flex flex-col gap-10">
@@ -80,10 +81,10 @@ export const Navbar = () => {
               />
               <BsThreeDotsVertical/>
               </div>
-              <Link to={"/dashboard/paymentscard"}>
+              <Link to={"/dashboard/notifications"}>
                 <h2 className="text-lg text-shadow-md">Notifications</h2>
               </Link>
-              <span className="text-2xl font-medium opacity-65">0</span>
+              <span className="text-2xl font-medium opacity-65">{expiredUserCount}</span>
               <span className="text-green-400 ">0%</span>
             </div>
           </td>
@@ -105,7 +106,7 @@ export const Navbar = () => {
           </td>
         </tr>
         <tr className="flex gap-10 justify-center">
-          <td className="w-8/12"></td>
+        <td className="bg-white w-8/12"></td>
           <td className="flex flex-col w-4/12 gap-4 bg-white p-4">
             <div className="flex gap-4">
               <img

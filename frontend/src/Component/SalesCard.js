@@ -22,9 +22,11 @@ export const SalesCard = () => {
     );
 
     let expiryDate;
-    let gymPlan = user.gymPlan;
+    let gymPlan = user.gymPlan?user.gymPlan:user.plan;
+    console.log("the gym plan we got is ",gymPlan);
     switch (gymPlan) {
-      case "month": {
+      case "month":
+        case "premium": {
         expiryDate = new Date(registrationDate);
         expiryDate.setMonth(expiryDate.getMonth() + 1);
         break;
@@ -64,7 +66,7 @@ export const SalesCard = () => {
         }
       );
       const { message } = result.data;
-      // console.log("we will pass above data into our store", message);
+      console.log("we will pass above data into our store", message);
       dispatch(addClient(message));
 
       if (!result) {

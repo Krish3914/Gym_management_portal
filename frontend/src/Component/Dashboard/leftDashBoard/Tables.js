@@ -29,7 +29,7 @@ const Table = () => {
         }
       );
       const { message } = result.data;
-      // console.log("we will pass above data into our store", message);
+      console.log("we will pass above data into our store", message);
       dispatch(addClient(message));
 
       if (!result) {
@@ -153,7 +153,7 @@ const Table = () => {
                 <td className="py-2 px-4 border-b">
                   <input
                     type="text"
-                    value={data?.gymPlan}
+                    value={data?.gymPlan?data.gymPlan:data.plan}
                     className="text-center w-full"
                     readOnly
                   />

@@ -1636,6 +1636,7 @@ ul, ol {
 @media only screen and (min-width: 1200px) {
 	.container {
 		max-width: 1170px;
+
 	}
 }
 /* Medium Device: 1200px */

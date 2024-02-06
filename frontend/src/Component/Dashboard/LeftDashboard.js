@@ -6,7 +6,7 @@ import { Searchbar } from "../Searchbar";
 export const LeftDashboard = () => {
   return (
     <>
-      <div className=" bg-white p-4 flex flex-col gap-4">
+      <div className=" bg-white p-4 flex flex-col gap-4 h-screen">
         <div className="flex flex-col gap-4 ">
           <Link to={"navbar"}>
             {" "}

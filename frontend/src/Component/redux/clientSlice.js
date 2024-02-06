@@ -4,7 +4,8 @@ const clientSlice = createSlice({
     name:"clientSlice",
     initialState:{
         client:[],
-        clientSearch:[]
+        clientSearch:[],
+        expiredUserCount:0
     },
     reducers:{
         addClient:(state,action)=>{
@@ -16,10 +17,12 @@ const clientSlice = createSlice({
         removeClient: (state, action) => {
             state.client = state.client.filter((client) => client._id !== action.payload);
           },
-        
+        expiredUserCount:(state,action)=>{
+            state.expiredUserCount = action.payload;
+        }
     }
 })
 
 
-export const { addClient,addClientSearch,removeClient } = clientSlice.actions;
+export const { addClient,addClientSearch,removeClient,expiredUserCount } = clientSlice.actions;
 export default clientSlice.reducer;

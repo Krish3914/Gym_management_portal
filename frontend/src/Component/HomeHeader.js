@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { isLoggedIn } from "./utils/isLoggedIn";
 
 const HomeHeader = ()=>{
     return(
@@ -12,13 +13,15 @@ const HomeHeader = ()=>{
                 <nav className="mainmenu mobile-menu text-white">
                     <ul>
                         <Link to={"/"}><li className="">Home</li></Link>
-                        <li className="">About</li>
-                        <li className="">Classes</li>
-                        <li className="">Blog</li>
+                        <Link to={"/aboutus"}><li className="">About</li></Link>
+                        <Link to={"/classes"}><li className="">Classes</li></Link>
+                        <Link to={"/blogs"}><li className="">Blog</li></Link>
                         <Link to={"/contact"}><li className="">Contacts</li></Link>
                     </ul>
                 </nav>
-                <Link to={"/login"} className="primary-btn signup-btn">LogIn</Link>
+                {
+                    isLoggedIn()?<Link to={"/dashboard/navbar"} className="primary-btn signup-btn">Dashboard</Link>:<Link to={"/login"} className="primary-btn signup-btn">LogIn</Link>
+                }
             </div>
             <div id="mobile-menu-wrap"></div>
         </div>
