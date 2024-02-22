@@ -8,6 +8,7 @@ import { addClientSearch } from "./redux/clientSlice";
 export const Searchbar = () => {
   const dispatch = useDispatch();
   const selector = useSelector((store) => store.client.client);
+  const userInfo = useSelector((store)=>store.user.userData);
   const [showTemplate, setshowTemplate] = useState(false);
   const [searchData, setSearchData] = useState("");
 
@@ -16,7 +17,7 @@ export const Searchbar = () => {
   };
 
   const searchHandle = () => {
-    console.log("this data we will interate",selector);
+    // console.log("this data we will interate",selector);
     const clients = selector.filter((data) =>
      data.name.toLowerCase().includes(searchData.toLowerCase()) || data.phone.toString().includes(searchData)
     );
@@ -44,8 +45,8 @@ export const Searchbar = () => {
         ):<div className="hidden"></div>}
       </div>
       <img
-        src={require("../images/avatars/6.png")}
-        className="w-14 h-12 rounded-full cursor-pointer my-auto"
+        src={userInfo?.photo?userInfo.photo:require("../images/avatars/6.png")}
+        className="w-14 h-14 rounded-full cursor-pointer my-auto"
         onClick={() => setshowTemplate(!showTemplate)}
       />
       {showTemplate ? <Template /> : <div className="hidden"></div>}

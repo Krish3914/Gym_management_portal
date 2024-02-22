@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addClient } from "./redux/clientSlice";
+import { apiURL } from "./utils/commonData";
 export const SalesCard = () => {
   const navigate = useNavigate();
   const selector = useSelector((store) => store.client.client);
@@ -23,7 +24,7 @@ export const SalesCard = () => {
 
     let expiryDate;
     let gymPlan = user.gymPlan?user.gymPlan:user.plan;
-    console.log("the gym plan we got is ",gymPlan);
+    // console.log("the gym plan we got is ",gymPlan);
     switch (gymPlan) {
       case "month":
         case "premium": {
@@ -58,7 +59,7 @@ export const SalesCard = () => {
   const getClients = async () => {
     try {
       const result = await axios.get(
-        `http://localhost:4000/api/v1/clients/${ownerId}`,
+        `${apiURL}clients/${ownerId}`,
         {
           params: {
             ownerId: ownerId,
@@ -66,7 +67,7 @@ export const SalesCard = () => {
         }
       );
       const { message } = result.data;
-      console.log("we will pass above data into our store", message);
+      // console.log("we will pass above data into our store", message);
       dispatch(addClient(message));
 
       if (!result) {
@@ -79,19 +80,19 @@ export const SalesCard = () => {
   };
 
   useEffect(()=>{
-    console.log("priting selector ",selector);
+    // console.log("priting selector ",selector);
     if(selector.length === 0)
       getClients();
   },[]);
 
   return (
     <div className="">
-      {console.log("client we get are",selector)}
+      {/* {console.log("client we get are",selector)} */}
       <button
         className="bg-purple-400 text-white py-1 px-4 mb-5 rounded-lg font-medium shadow-lg hover:bg-purple-500 duration-500"
         onClick={() => navigate(-1)}
       >
-        Previous
+        Back
       </button>
       <table className="min-w-full bg-white border border-gray-300 shadow-lg mx-auto">
         <thead>

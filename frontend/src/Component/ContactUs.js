@@ -24,7 +24,7 @@ const ContactUs = ()=>{
         <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d11544.4812035225!2d-80.5344452!3d43.4812305!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882c0bca24482fd9%3A0xd634b53304151d32!2sMaskottchen%20Technology!5e0!3m2!1sen!2sca!4v1643073485155!5m2!1sen!2sca"/>
     
-        <img src="img/icon/location.png" alt=""/>
+        {/* <img src="img/icon/location.png" alt=""/> */}
     </div>
     <section class="contact-section spad">
         <div class="container">

@@ -6,9 +6,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { apiURL } from "./utils/commonData";
 
 export const Signup = () => {
-  const signupUrl = "http://localhost:4000/api/v1/signup";
+  const signupUrl = `${apiURL}signup`;
   const [signupData, setsignUpData] = useState({
       uName:"",email:"",password:""
   });
@@ -35,7 +36,7 @@ export const Signup = () => {
     
     try{
       const response = await axios.post(signupUrl,{...realData});
-      console.log(response);
+      // console.log(response);
       toast.success("Account Created Successfully");
       emptyInputs();
     } catch(error){
@@ -55,7 +56,7 @@ export const Signup = () => {
 
   const signupHandle = (e)=>{
     e.preventDefault();
-    console.log(`Name: ${signupData.uName} email:  ${signupData.email} password:${signupData.password}`);
+    // console.log(`Name: ${signupData.uName} email:  ${signupData.email} password:${signupData.password}`);
     if(!signupData.uName|| !signupData.password){
       toast.warning("Please Fill All the details");
     }

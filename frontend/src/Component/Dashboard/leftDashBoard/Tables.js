@@ -7,13 +7,14 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addClient } from "../../redux/clientSlice";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { apiURL } from "../../utils/commonData";
 
 const Table = () => {
   const selector = useSelector((store) => store.client.client);
   const ownerId = useSelector((store) => store.user.userData?._id);
   const dispatch = useDispatch();
   // console.log(ownerId);
-  console.log("this is client data", selector);
+  // console.log("this is client data", selector);
   const clients = selector;
 
   const [userData, setUserdata] = useState(clients);
@@ -21,7 +22,7 @@ const Table = () => {
   const getClients = async () => {
     try {
       const result = await axios.get(
-        `http://localhost:4000/api/v1/clients/${ownerId}`,
+        `${apiURL}clients/${ownerId}`,
         {
           params: {
             ownerId: ownerId,
@@ -29,7 +30,7 @@ const Table = () => {
         }
       );
       const { message } = result.data;
-      console.log("we will pass above data into our store", message);
+      // console.log("we will pass above data into our store", message);
       dispatch(addClient(message));
 
       if (!result) {
@@ -43,17 +44,17 @@ const Table = () => {
 
   const handleDeleteUser = async (index) => {
     let updatedClients = [...clients];
-    console.log("this is user before delete ",updatedClients)
+    // console.log("this is user before delete ",updatedClients)
     const updatedClientsAfterDelete = updatedClients.filter((_, i) => i !== index);
     const id = updatedClients[index]._id; // Remove the client at the specified index
     try {
       const deleteClient = await axios.delete(
-        `http://localhost:4000/api/v1/deleteclient/${id}`
+        `${apiURL}deleteclient/${id}`
       );
        // Update Redux store
        
     dispatch(addClient(updatedClientsAfterDelete));
-    console.log("this is user after delete ",updatedClientsAfterDelete);
+    // console.log("this is user after delete ",updatedClientsAfterDelete);
     setUserdata(updatedClientsAfterDelete);
     toast.success("User deleted successfully");
     } catch (err) {
@@ -72,21 +73,21 @@ const Table = () => {
         return data;
       });
     });
-    console.log("this is user after entire cahneg in state", userData);
+    // console.log("this is user after entire cahneg in state", userData);
   };
 
   const handleSave = async (index) => {
     setisReadonly(!isReadonly);
-    console.log("this is use data from state", userData[index]);
+    // console.log("this is use data from state", userData[index]);
     const { _id, name, dateOfBirth, email, gymPlan, phone } = userData[index];
     dispatch(addClient(userData));
-    console.log("this is use data from redux", selector);
+    // console.log("this is use data from redux", selector);
     try {
       const updateClient = await axios.put(
-        `http://localhost:4000/api/v1/updateclient`,
+        `${apiURL}updateclient`,
         { _id, name, dateOfBirth, email, gymPlan, phone }
       );
-      console.log(updateClient);
+      // console.log(updateClient);
     } catch (err) {
       console.log(err.message);
     }

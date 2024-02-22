@@ -47,6 +47,15 @@ h1, h2, h3, h4, h5, h6 {
 h1 {
 	font-size: 70px;
 }
+
+/* Add this CSS to your stylesheet */
+.single-trainer-item img {
+	height: 300px; /* Set your desired height */
+	width: 100%; /* Ensure the width scales proportionally */
+	object-fit: cover; /* Preserve aspect ratio and cover the entire space */
+  }
+  
+
 h2 {
 	font-size: 36px;
 }
@@ -79,7 +88,7 @@ input:focus, select:focus, button:focus, textarea:focus {
 a:hover, a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #fff;
+	color: #696cff;
 }
 ul, ol {
 	padding: 0;
@@ -1137,13 +1146,13 @@ ul, ol {
 	transition: all 0.5s;
 }
 .schedule-table table tbody tr td.hover-bg:hover h6 {
-	color: #ffffff;
+	color: #696cff;
 }
 .schedule-table table tbody tr td.hover-bg:hover span {
-	color: #ffffff;
+	color: #696cff;
 }
 .schedule-table table tbody tr td.hover-bg:hover .trainer-name {
-	color: #ffffff;
+	color: #696cff;
 }
 .schedule-table table tbody tr td.hover-bg:hover:after {
 	opacity: 1;
@@ -1788,7 +1797,7 @@ ul, ol {
 	.slicknav_nav a:hover {
 		border-radius: 0;
 		background: #f15d44;
-		color: #ffffff;
+		color: #696cff;
 	}
 	.slicknav_nav a {
 		padding: 10px;

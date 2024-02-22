@@ -3,25 +3,26 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Spinner } from "./Spinner";
 import { expiredUserCount } from "./redux/clientSlice";
+import {apiURL} from "../Component/utils/commonData"
 
 export const Notifications = () => {
   const [user, setUserInfo] = useState([]);
   let userData;
   const dispatch = useDispatch();
   const ownerId = useSelector((store) => store.user.userData?._id);
-  console.log("this is owner id ", ownerId);
+  // console.log("this is owner id ", ownerId);
 
   const getUser = async () => {
     try {
       const userArray = await axios.get(
-        "http://localhost:4000/api/v1/clients",
+        `${apiURL}clients`,
         {
           params: {
             ownerId: ownerId,
           },
         }
       );
-      console.log("this is info we fetch ", userArray?.data?.data);
+      // console.log("this is info we fetch ", userArray?.data?.data);
       userData = userArray?.data?.data;
       findExpiry();
     } catch (error) {
@@ -31,13 +32,13 @@ export const Notifications = () => {
 
   const findExpiry = () => {
     let userArray = [];
-    console.log("inside the find expiry");
-    console.log("the user us ", userData);
+    // console.log("inside the find expiry");
+    // console.log("the user us ", userData);
     userData.map((data) => {
       const daysLeft = Math.ceil(
         (Date.parse(data?.expiryDate) - Date.now()) / (1000 * 60 * 60 * 24)
       );
-      console.log("the days left are ", daysLeft);
+      // console.log("the days left are ", daysLeft);
       let info = {
         name: data.name,
         daysLeft: daysLeft,
@@ -46,7 +47,7 @@ export const Notifications = () => {
 
       userArray.push(info);
     });
-    console.log("user array is ", userArray);
+    // console.log("user array is ", userArray);
     userArray = userArray.filter(
       (data) => data.daysLeft < 10 && data.daysLeft > 0
     );

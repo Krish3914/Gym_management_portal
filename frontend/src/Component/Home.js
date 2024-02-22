@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { HomeHeader } from "./HomeHeader";
 import { HomeFooter } from "./HomeFooter";
 import { loadStripe } from "@stripe/stripe-js";
@@ -7,11 +7,15 @@ import { isLoggedIn } from "./utils/isLoggedIn";
 import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserData } from "./redux/UserSlice";
+import { apiURL } from "./utils/commonData";
 const Home = () => {
+  const navigate = useNavigate();
   const user = useSelector((state) => state.user.userData);
   const dispatch = useDispatch();
-  console.log("this is user info", user);
+  // console.log("this is user info", user);
   const makePayment = async (plan, amount) => {
+    return toast.warning("Page under development – stay tuned for the unveiling")
+
     if (isLoggedIn()) {
       console.log("calling function makePayment");
 
@@ -40,14 +44,14 @@ const Home = () => {
       try {
         // Make a request to the server to create a Stripe Checkout Session
         const response = await axios.post(
-          "http://localhost:4000/api/v1/makepayment",
+          `${apiURL}makepayment`,
           { products }
         );
 
-        console.log("this is response ", response);
+        // console.log("this is response ", response);
         const updatedUser = { ...user, plan: plan };
         dispatch(addUserData(updatedUser));
-        console.log(updatedUser);
+        // console.log(updatedUser);
         // Redirect the user to the Checkout page using the session ID
         const result = await stripe.redirectToCheckout({
           sessionId: response.data.id,
@@ -67,24 +71,24 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div className="w-full h-screen">
       {/* <div id="preloder">
         <div className="loader"></div>
     </div> */}
       <HomeHeader />
-      <section className="hero-section set-bg">
+      <section className="hero-section set-bg ">
         <div className="container">
           <div className="row">
             <div className="col-lg-8">
               <div className="hero-text">
-                <span>FITNESS ELEMENTS</span>
+                <span>MEMBERS RECORD</span>
                 <h1>GYM MANAGER</h1>
                 <p>
-                  Gutim comes packed with the user-friendly GYM MANAGER
+                 Manage your members precisely and free
                   <br /> shortcode which lets
                 </p>
                 <Link to={"/signup"} className="primary-btn">
-                  Expolore More
+                  Get Started
                 </Link>
               </div>
             </div>
@@ -187,7 +191,6 @@ const Home = () => {
           <div className="row">
             <div className="col-lg-12">
               <div className="section-title">
-                <h2>UNLIMITED CLASSES</h2>
               </div>
             </div>
           </div>
@@ -306,7 +309,7 @@ const Home = () => {
                 <img src="img/trainer/trainer-1.jpg" alt="" />
                 <div className="trainer-text">
                   <h5>Patrick Cortez</h5>
-                  <span>Leader</span>
+                  <span>Founder</span>
                   <p>
                     non numquam eius modi tempora incidunt ut labore et dolore
                     magnam aliquam quaerat voluptatem.
@@ -330,10 +333,10 @@ const Home = () => {
             </div>
             <div className="col-lg-4 col-md-6">
               <div className="single-trainer-item">
-                <img src="img/trainer/trainer-2.jpg" alt="" />
+                <img src="img/trainer/cto-img.jpg" alt="" />
                 <div className="trainer-text">
                   <h5>Gregory Powers</h5>
-                  <span>Gym coach</span>
+                  <span>CTO</span>
                   <p>
                     non numquam eius modi tempora incidunt ut labore et dolore
                     magnam aliquam quaerat voluptatem.
@@ -357,10 +360,10 @@ const Home = () => {
             </div>
             <div className="col-lg-4 col-md-6">
               <div className="single-trainer-item">
-                <img src="img/trainer/trainer-3.jpg" alt="" />
+                <img src="img/trainer/business-dev.jpg" alt=""/>
                 <div className="trainer-text">
                   <h5>Walter Wagner</h5>
-                  <span>Dance trainer</span>
+                  <span>Business Developer</span>
                   <p>
                     non numquam eius modi tempora incidunt ut labore et dolore
                     magnam aliquam quaerat voluptatem.
@@ -494,7 +497,7 @@ const Home = () => {
                     <span>Unlimited</span>
                   </li>
                 </ul>
-                {/* <button className="primary-btn membership-btn" onClick={()=>makePayment()}>Start Now</button> */}
+                <button className="primary-btn membership-btn" onClick={()=>navigate("/login")}>Start Now</button>
               </div>
             </div>
             <div className="col-lg-3">

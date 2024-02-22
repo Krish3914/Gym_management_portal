@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addUserData } from "./redux/UserSlice";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { apiURL } from "./utils/commonData";
 
 export const Login = () => {
   const [signInData, setSignInData] = useState({
@@ -17,7 +18,7 @@ export const Login = () => {
   const [showEye, setshowEye] = useState(false);
   const selectorUser = useSelector((store) => store.user);
   const dispatch = useDispatch();
-  const loginUrl = "http://localhost:4000/api/v1/login";
+  const loginUrl = `${apiURL}login`;
 
   const navigate = useNavigate();
 
@@ -42,7 +43,7 @@ export const Login = () => {
       if (savedRes.status === 200) {
         const user = savedRes.data.user;
         dispatch(addUserData(user));
-        localStorage.setItem("token", savedRes.data.user.token);
+        sessionStorage.setItem("token", savedRes.data.user.token);
         navigate("/dashboard/navbar");
       }
     } catch (err) {
@@ -68,6 +69,7 @@ export const Login = () => {
 
   return (
     <div className="h-screen bg-slate-100 flex justify-center items-center relative">
+      {console.log("hi shubahm")}
       <div className="w-3/12 flex flex-col gap-5 rounded-lg bg-white p-5 my-2 relative">
         <div className="flex self-center gap-2 ">
           <img src={iconImage} className="w-10 self-center"></img>
@@ -139,7 +141,7 @@ export const Login = () => {
         <div>
           New on our platform?{" "}
           <span className="cursor-pointer text-[#696cff] font-bold">
-            <Link to={"/"}>Create an account</Link>
+            <Link to={"/signup"}>Create an account</Link>
           </span>
         </div>
       </div>

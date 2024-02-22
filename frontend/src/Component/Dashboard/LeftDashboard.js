@@ -7,7 +7,7 @@ export const LeftDashboard = () => {
   return (
     <>
       <div className=" bg-white p-4 flex flex-col gap-4 h-screen">
-        <div className="flex flex-col gap-4 ">
+        <div className="flex flex-col gap-2 ">
           <Link to={"navbar"}>
             {" "}
             <div className="flex self-start gap-2 ">
@@ -33,7 +33,7 @@ export const LeftDashboard = () => {
             </Link>
           </div>
           <div className="bg-purple-200 p-3 font-medium opacity-80 rounded-md flex justify-between flex-col gap-3">
-            <Link to={"/dashboard/tables"}>
+            <Link to={"/dashboard/support"}>
               <div className="flex justify-between items-center cursor-pointer adduser">
                 Support
               </div>

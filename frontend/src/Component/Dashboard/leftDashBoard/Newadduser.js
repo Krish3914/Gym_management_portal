@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Spinner } from "../../Spinner";
+import { apiURL } from "../../utils/commonData";
 
 export const Newadduser = () => {
   //accessing user(Owners) id from the store
@@ -16,7 +17,7 @@ export const Newadduser = () => {
     phone: null,
   });
 
-  const addTraineeurl = "http://localhost:4000/api/v1/addtrainee";
+  const addTraineeurl = `${apiURL}addtrainee`;
   const emptyForm = ()=>{
     // console.log("inside the empty form");
     setuserInfo({
@@ -41,7 +42,7 @@ export const Newadduser = () => {
     try {
       // console.log("check data to be passed",realData);
       const savedRes = await axios.post(addTraineeurl, { ...realData });
-      console.log("server gives us this response ",savedRes);
+      // console.log("server gives us this response ",savedRes);
       if (savedRes.status !== 200) {
         throw new Error(`Error with status response: ${savedRes.status}`);
       }
@@ -58,9 +59,9 @@ export const Newadduser = () => {
 
   const clickHandle = (e) => {
     e.preventDefault();
-    console.log("printing userInfo ",userInfo);
+    // console.log("printing userInfo ",userInfo);
     if(userInfo.name == undefined || userInfo?.email == undefined || userInfo.dob == undefined || userInfo?.plan == undefined || userInfo.phone?.length !=10){
-      toast.warning("please fill details correctly");
+      // toast.warning("please fill details correctly");
       return;
     }
     createUser(userInfo);

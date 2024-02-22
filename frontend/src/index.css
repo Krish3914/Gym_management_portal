@@ -94,7 +94,7 @@ input:focus, select:focus, button:focus, textarea:focus {
 a:hover, a:focus {
 	text-decoration: none;
 	outline: none;
-	color: #fff;
+	color: #696cff;
 }
 ul, ol {
 	padding: 0;
@@ -1529,6 +1529,7 @@ ul, ol {
 	position: relative;
 }
 .map iframe {
+	height: 100%;
 	width: 100%;
 }
 .map img {
@@ -1954,4 +1955,8 @@ ul, ol {
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: top center;
+}
+
+.aboutus{
+	background-image: url("./images/img/hero-bg.jpg");
 }

@@ -5,19 +5,20 @@ import { Searchbar } from "./Searchbar";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import {apiURL} from "./utils/commonData"
 
 export const Dashboard = () => {
   let userRedux = useSelector((store)=>store.user.userData);
   const navigate = useNavigate();
   const checkValidity = async () => {
-    const localStorageToken = localStorage.getItem('token');
+    const sessionStorageToken = sessionStorage.getItem('token');
     try {
-      const result = await axios.get("http://localhost:4000/api/v1/dashboard",{ headers: {
-        Authorization: `Bearer ${localStorageToken}`,
+      const result = await axios.get(`${apiURL}dashboard`,{ headers: {
+        Authorization: `Bearer ${sessionStorageToken}`,
       },});
      
-      console.log(result);
-      console.log("this is userRedux ",userRedux);
+      // console.log(result);
+      // console.log("this is userRedux ",userRedux);
     } catch (err) {
       console.log(err.message);
       toast.warning(err.message);

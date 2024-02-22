@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
@@ -23,8 +23,27 @@ import { Paymentcancel } from "./Component/CancelPayment";
 import { Classes } from "./Component/Classes";
 import { Blogs } from "./Component/Blogs";
 import { About } from "./Component/About";
+import { Setting } from "./Component/Settings";
+import { PageNotFound } from "./Component/PageNotFound";
+import { Support } from "./Component/Support";
+
+
 
 const App = () => {
+  useEffect(()=>{
+  
+    // const handleBeforeUnload = () => {
+    //   // Code to clear localStorage
+    //   localStorage.clear();
+    // };
+
+    // window.addEventListener('beforeunload', handleBeforeUnload);
+
+    // // Cleanup the event listeners when the component is unmounted
+    // return () => {
+    //   window.removeEventListener('beforeunload', handleBeforeUnload);
+    // };
+  },[])
   return (
     <Provider store={userStore}>
       <div className="app">
@@ -33,6 +52,7 @@ const App = () => {
         </PersistGate>
       </div>
     </Provider>
+    
   );
 };
 
@@ -100,6 +120,9 @@ const router = createBrowserRouter([
           {
             path: "user",
             element: <UserProfile />,
+          },{
+            path:"setting",
+            element:<Setting/>
           },
       {
         path: "salescard",
@@ -112,12 +135,24 @@ const router = createBrowserRouter([
       {
         path: "notifications",
         element: <Notifications />,
-      }]},
-      
+      },
+      {
+        path:"support",
+        element:<Support/>
+      }
+    ]},
+      {
+        element:<PageNotFound/>,
+        path:"*"
+      }
     ],
+    
   },
 ]);
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(<RouterProvider router={router} />);
+
+
