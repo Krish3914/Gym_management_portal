@@ -19,7 +19,7 @@ export const ForgotPassword = () => {
       // sending otp request to backend
       setLoader(true);
       const result = await axios.post(`${apiURL}send-otp`,{email});
-      // console.log("we got the result ",result);
+      console.log("we got the result ",result);
       setLoader(false);
       if(result.data.message){
         navigate(`/enterotp/${email}`);

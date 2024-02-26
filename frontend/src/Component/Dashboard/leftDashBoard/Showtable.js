@@ -39,7 +39,7 @@ export const Showtable = ()=>{
                 <td className="py-2 px-4 border-b w-1/2">
                   <input
                     type="text"
-                    value={data?.dateOfBirth}
+                    value={data?.dateOfBirth?.substr(0,10)}
                     className="text-center w-1/2"
                     readOnly
                   />

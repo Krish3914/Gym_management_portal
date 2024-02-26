@@ -4,47 +4,43 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { addUserData } from "../../redux/UserSlice";
 import { apiURL } from "../../utils/commonData";
+import {Spinner} from "../../Spinner";
 
 const UserProfile = () => {
   const userInfo = useSelector((store) => store.user.userData);
-  // console.log("this is user info fetched from user store", userInfo);
   const dispatch = useDispatch();
   
   const [user, setUser] = useState(userInfo);
-  const photo = !user?.photo?`https://ui-avatars.com/api/?name=${user?.name}`:user?.photo;
-  dispatch(addUserData(user));
+  const[loading,setLoading] = useState(false);
   const [isreadOnly, setReadOnly] = useState(false);
   const [selectImage, setSelectImage] = useState(undefined);
 
   const updateUserInfo = async () => {
-    // console.log("calling updateUserInfo");
-    dispatch(addUserData(user));
-    // console.log("user is ",user);
-    try{
+    try {
       const updatedUser = await axios.put(
         `${apiURL}updateuser`,
         { ...user }
       );
       dispatch(addUserData(updatedUser.data.message));
-      // console.log("update the name ");
-    } catch(err){
-      console.error("stuck in error ",err.message);
+      toast.success("User information updated successfully");
+    } catch (err) {
+      console.error("Error updating user information: ", err.message);
+      toast.error("Error updating user information");
     }
   };
 
   const setEditableClick = (e) => {
     e.preventDefault();
     setReadOnly(!isreadOnly);
-    if (user == userInfo) {
+
+    if (user === userInfo) {
       !isreadOnly
-        ? toast.success("Now user can edit his personal Information")
-        : toast.warning("Prevent User From Editing personal information");
+        ? toast.success("User can now edit personal information")
+        : toast.warning("User prevented from editing personal information");
     }
-    //save user inputed information and storing it in userSlice
-    if (e.target.textContent === "Save" && user != userInfo) {
-      toast.warning(
-        "please note that you make changes in your personal infomartion"
-      );
+
+    if (e.target.textContent === "Save" && user !== userInfo) {
+      toast.warning("Please note that you made changes to your personal information");
       updateUserInfo();
     }
   };
@@ -69,30 +65,41 @@ const UserProfile = () => {
   };
 
   const uploadImage = async (e) => {
-
     if (!selectImage) {
       toast.error("Please select the image");
       return;
     }
 
-    const formData = new FormData();
-    formData.append("file",selectImage);
-    formData.append("name",selectImage.name);
-    formData.append("email",userInfo.email);
+    try {
+      setLoading(true);
+      const formData = new FormData();
+      formData.append("file", selectImage);
+      formData.append("name", selectImage.name);
+      formData.append("email", userInfo.email);
 
-    const imageUploadResult = await axios.put(
-      `${apiURL}upload-image`,
-      formData
-    );
-    // console.log("the upload image o/p we recived ", imageUploadResult);
+      const imageUploadResult = await axios.put(
+        `${apiURL}upload-image`,
+        formData
+      );
+
+      dispatch(addUserData(imageUploadResult.data.data));
+      setUser(imageUploadResult.data.data);
+        setLoading(false);
+      toast.success("Image uploaded successfully!");
+    } catch (err) {
+      setLoading(false);
+      console.error("Error uploading image: ", err.message);
+      toast.error("Error uploading image");
+    }
   };
-  return user === undefined ? (
-    <div className="">we will appear soon</div>
+
+  return user === undefined || loading? (
+    <Spinner/>
   ) : (
     <div className="flex flex-col gap-5 h-screen">
       <div className="flex w-full gap-8">
         <img
-          src={photo}
+          src={!user?.photo ? `https://ui-avatars.com/api/?name=${user?.name}` : user?.photo}
           className="w-1/12 rounded-full"
         />
         <div className="flex flex-col gap-4 ">
@@ -112,7 +119,7 @@ const UserProfile = () => {
             </button>
           </div>
           <span className="text-gray-400 text-sm">
-            Allowed image,png,image,jpeg. Max size of 800K
+            Allowed image formats: png, jpeg,jpg.
           </span>
         </div>
       </div>
@@ -136,6 +143,7 @@ const UserProfile = () => {
         />
         <label htmlFor="phone">PHONE</label>
         <input
+         maxLength={10}
           className="border border-gray-300  hover:border-purple-500 transition duration-300 bg-transparent p-2 rounded-md w-1/2"
           readOnly={!isreadOnly}
           id="phone"

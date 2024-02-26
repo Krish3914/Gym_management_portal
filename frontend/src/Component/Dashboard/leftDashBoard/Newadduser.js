@@ -61,7 +61,7 @@ export const Newadduser = () => {
     e.preventDefault();
     // console.log("printing userInfo ",userInfo);
     if(userInfo.name == undefined || userInfo?.email == undefined || userInfo.dob == undefined || userInfo?.plan == undefined || userInfo.phone?.length !=10){
-      // toast.warning("please fill details correctly");
+      toast.warning("Please Fill Correct Details");
       return;
     }
     createUser(userInfo);

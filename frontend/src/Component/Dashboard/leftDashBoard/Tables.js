@@ -132,7 +132,7 @@ const Table = () => {
                 <td className="py-2 px-4 border-b">
                   <input
                     type="text"
-                    value={data?.dateOfBirth}
+                    value={data?.dateOfBirth?.substr(0,10)}
                     className="text-center w-full"
                     readOnly={isReadonly}
                     onChange={(e) =>
