@@ -248,10 +248,7 @@ ul, ol {
 .logo {
 	float: left;
 }
-.logo a {
-	display: inline-block;
-	padding: 24px 0 29px;
-}
+
 .nav-menu {
 	float: right;
 }

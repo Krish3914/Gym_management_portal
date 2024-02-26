@@ -308,7 +308,7 @@ const Home = () => {
               <div className="single-trainer-item">
                 <img src="img/trainer/trainer-1.jpg" alt="" />
                 <div className="trainer-text">
-                  <h5>Patrick Cortez</h5>
+                  <h5>Karan Tiwari</h5>
                   <span>Founder</span>
                   <p>
                     non numquam eius modi tempora incidunt ut labore et dolore
@@ -335,7 +335,7 @@ const Home = () => {
               <div className="single-trainer-item">
                 <img src="img/trainer/cto-img.jpg" alt="" />
                 <div className="trainer-text">
-                  <h5>Gregory Powers</h5>
+                  <h5>Shubhanker Tiwari</h5>
                   <span>CTO</span>
                   <p>
                     non numquam eius modi tempora incidunt ut labore et dolore
@@ -362,7 +362,7 @@ const Home = () => {
               <div className="single-trainer-item">
                 <img src="img/trainer/business-dev.jpg" alt=""/>
                 <div className="trainer-text">
-                  <h5>Walter Wagner</h5>
+                  <h5>Akasksha Tiwari</h5>
                   <span>Business Developer</span>
                   <p>
                     non numquam eius modi tempora incidunt ut labore et dolore

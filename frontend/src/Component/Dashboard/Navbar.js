@@ -15,20 +15,22 @@ export const Navbar = () => {
             {" "}
             <div className="bg-white rounded-xl p-2">
               <div className="flex">
-                <div className="flex mx-auto flex-col gap-4 mt-2">
+                <div className="flex mx-auto flex-col gap-6 mt-2">
                   <span className="text-purple-400 font-medium text-xl">
-                    WelCome <span className="text-xl ">{role?role:userName}🎉</span>
+                    Welcome <span className="text-xl ">{role?role:userName}🎉</span>
                   </span>
                   <span className="opacity-65">
                     You have done
                     <span className="font-semibold leading-3"> 0% </span> more
                     sales today. Check your new badge in your profile.
                   </span>
-                  <span className="w-3/12 p-1 border-2 border-purple-300 text-purple-400  hover:bg-purple-600 text-center hover:text-white rounded-md duration-500 ">
+                  <Link to={"/dashboard/traineeform"}><span className="w-3/12 py-2 px-1  border-2 border-purple-300 text-purple-400  hover:bg-purple-600 text-center hover:text-white rounded-md duration-500 ">
                     {" "}
-                    View Badges
+                    Add Members
                   </span>
+                  </Link>
                 </div>
+                
                 <img
                   src={require("../../images/illustrations/man-with-laptop-light.png")}
                   className="w-4/12"

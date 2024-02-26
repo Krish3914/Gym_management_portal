@@ -4,11 +4,8 @@ import { isLoggedIn } from "./utils/isLoggedIn";
 const HomeHeader = ()=>{
     return(
         <header className="header-section">
-        <div className="container">
-            <div className="logo">
-               
-                    <Link to={"/"}><img src="img/logo.png" alt=""/></Link>
-            </div>
+        <div className="container">               
+                    <Link to={"/"}><img src="img/logo.png" alt="" className="logo w-1/6"/></Link>
             <div className="nav-menu">
                 <nav className="mainmenu mobile-menu text-white">
                     <ul>

@@ -4,8 +4,8 @@ import { Showtable } from "./Showtable";
 
 export const ClientsTable = ()=>{
     const searchClients = useSelector((store)=>store.client.clientSearch);
-    // console.log("printing searchClients",searchClients);
+    console.log("printing searchClients",searchClients);
     return(
-        (searchClients?.length == 0 ?<Table/>:<Showtable/>)
+        (searchClients[0]?<Showtable/>:<Table/>)
     )
 }

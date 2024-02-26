@@ -26,6 +26,9 @@ import { About } from "./Component/About";
 import { Setting } from "./Component/Settings";
 import { PageNotFound } from "./Component/PageNotFound";
 import { Support } from "./Component/Support";
+import {FAQ} from "./Component/FAQ";
+import { EnterOtp } from "./Component/EnterOTP";
+import { ResetPassword } from "./Component/ResetPassword";
 
 
 
@@ -102,6 +105,14 @@ const router = createBrowserRouter([
         element:<ForgotPassword/>
       },
       {
+        path:"/enterotp/:email",
+        element:<EnterOtp/>
+      },
+      {
+        path:"/reset-password/:email",
+        element:<ResetPassword/>
+      },
+      {
         path: "/dashboard",
         element: <Dashboard />,
         children: [
@@ -139,6 +150,10 @@ const router = createBrowserRouter([
       {
         path:"support",
         element:<Support/>
+      },
+      {
+        path:"FAQ",
+        element:<FAQ/>
       }
     ]},
       {

@@ -7,6 +7,9 @@ import { addClientSearch } from "../../redux/clientSlice";
 export const Showtable = ()=>{
     const  clients = useSelector((store)=>store.client.clientSearch);
     const dispatch = useDispatch();
+    const resetHandle = ()=>{
+      dispatch(addClientSearch({}))
+    }
 
     return(
 <div className="relative bg-slate-100 w-full">
@@ -63,7 +66,7 @@ export const Showtable = ()=>{
           })}
         </tbody>
       </table>
-      <button className="cursor-pointer border-2 border-slate-300  hover:bg-purple-500 hover:text-white hover:font-medium duration-500 bg-purple-400 px-3 py-1 text-white rounded-lg m-5 absolute right-0" onClick={()=>dispatch(addClientSearch({}))}>Reset</button>
+      <button className="cursor-pointer border-2 border-slate-300  hover:bg-purple-500 hover:text-white hover:font-medium duration-500 bg-purple-400 px-3 py-1 text-white rounded-lg m-5 absolute right-0" onClick={resetHandle}>Reset</button>
     </div>
     )
 }

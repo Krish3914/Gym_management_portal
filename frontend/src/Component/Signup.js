@@ -7,11 +7,12 @@ import axios from "axios";
 import { IoEyeOutline } from "react-icons/io5";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { apiURL } from "./utils/commonData";
+import isValidEmail from "./utils/validEmail";
 
 export const Signup = () => {
   const signupUrl = `${apiURL}signup`;
   const [signupData, setsignUpData] = useState({
-      uName:"",email:"",password:""
+      uName:"",email:"",password:"",isAgreeTerms:false
   });
 
   const[showPassword,setshowPassword] = useState(false);
@@ -21,7 +22,8 @@ export const Signup = () => {
     setsignUpData({
       uName:"",
       email:"",
-      password:""
+      password:"",
+      isAgreeTerms:false
     })
   }
 
@@ -31,7 +33,8 @@ export const Signup = () => {
       name : data.uName,
      email : data.email,
      password : data.password,
-     phone : 414120123
+     phone : 414120123,
+     isAgreeTerms:data.isAgreeTerms
     }
     
     try{
@@ -56,10 +59,14 @@ export const Signup = () => {
 
   const signupHandle = (e)=>{
     e.preventDefault();
-    // console.log(`Name: ${signupData.uName} email:  ${signupData.email} password:${signupData.password}`);
-    if(!signupData.uName|| !signupData.password){
-      toast.warning("Please Fill All the details");
-    }
+    console.log("signupData is ",signupData);
+    if(!signupData.uName|| !signupData.password)
+      return toast.warning("Please Fill All the details");
+    
+    if(!isValidEmail(signupData.email))
+      return toast.warning("Email Is Not Valid");
+    if(!signupData.isAgreeTerms)
+      return toast.warning("Agree Our Terms And Policy");
     else{
       createUser(signupData);
     }
@@ -123,8 +130,8 @@ export const Signup = () => {
 
         </div>
         <div className="flex gap-2 font-light">
-          <input type="checkbox" id="policy" className="w-4 rounded-md" />
-          <label htmlFor="policy">
+          <input value={signupData.isAgreeTerms} checked={signupData.isAgreeTerms} name="isAgreeTerms" type="checkbox" id="isAgreeTerms" className="w-4 rounded-md" onChange={changeHandle}/>
+          <label htmlFor="isAgreeTerms">
             I agree to{" "}
             <span className="cursor-pointer text-[#696cff] font-bold">
               privacy policy & terms

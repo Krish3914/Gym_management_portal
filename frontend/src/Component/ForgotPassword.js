@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import isValidEmail from "./utils/validEmail";
 import { useState } from "react";
 import {Spinner} from "./Spinner";
+import { ToastContainer, toast } from "react-toastify";
 import { apiURL } from "./utils/commonData";
 
 export const ForgotPassword = () => {
@@ -12,20 +13,23 @@ export const ForgotPassword = () => {
   const[email,setEmail] = useState(null);
   const sendOtp = async()=>{
     try{
-      if(!isValidEmail(email)){
-        throw new Error("the email is not valid")
-      }
+      if(!isValidEmail(email))
+        return toast.warning("Email is not valid")
 
       // sending otp request to backend
       setLoader(true);
       const result = await axios.post(`${apiURL}send-otp`,{email});
-      setLoader(false);
-     if(result){
       // console.log("we got the result ",result);
-     }
+      setLoader(false);
+      if(result.data.message){
+        navigate(`/enterotp/${email}`);
+
+      }
+
 
     } catch(err){
       setLoader(false);
+      toast.error("User Not Exists");
       console.log(err.message);
     }
   }
@@ -60,6 +64,7 @@ export const ForgotPassword = () => {
           </Link>
         </div>
       </div>
+      <ToastContainer/>
     </div>
   );
 };
