@@ -7,7 +7,7 @@ import { Signup } from "./Component/Signup";
 import { Dashboard } from "./Component/Dashboard";
 import { Newadduser } from "./Component/Dashboard/leftDashBoard/Newadduser";
 import { Navbar } from "./Component/Dashboard/Navbar";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import userStore, { persistor } from "./Component/redux/redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { UserProfile } from "./Component/Dashboard/leftDashBoard/UserProfile";
@@ -29,27 +29,15 @@ import { Support } from "./Component/Support";
 import {FAQ} from "./Component/FAQ";
 import { EnterOtp } from "./Component/EnterOTP";
 import { ResetPassword } from "./Component/ResetPassword";
+import { updateVisibility } from "./Component/redux/TemplateSlice";
 
 
 
 const App = () => {
-  useEffect(()=>{
   
-    // const handleBeforeUnload = () => {
-    //   // Code to clear localStorage
-    //   localStorage.clear();
-    // };
-
-    // window.addEventListener('beforeunload', handleBeforeUnload);
-
-    // // Cleanup the event listeners when the component is unmounted
-    // return () => {
-    //   window.removeEventListener('beforeunload', handleBeforeUnload);
-    // };
-  },[])
   return (
     <Provider store={userStore}>
-      <div className="app">
+      <div className="app" >
         <PersistGate loading={null} persistor={persistor}>
           <Outlet />
         </PersistGate>

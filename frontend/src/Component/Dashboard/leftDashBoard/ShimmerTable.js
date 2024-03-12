@@ -1,6 +1,10 @@
+import { useDispatch } from "react-redux";
+import { makeInvisible } from "../../redux/TemplateSlice";
+
 export const ShimmerTable = () => {
+  const dispatch = useDispatch();
   return (
-    <table className="min-w-full bg-white border border-gray-300">
+    <table className="min-w-full bg-white border border-gray-300" onClick={()=>dispatch(makeInvisible(false))}>
       <thead>
         <tr>
         <th className="py-2 px-4 border-b">Name</th>

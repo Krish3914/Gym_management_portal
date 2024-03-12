@@ -1,6 +1,10 @@
+import { useDispatch } from "react-redux";
+import { makeInvisible } from "./redux/TemplateSlice";
+
 const Support = () => {
+  const dispatch = useDispatch();
     return (
-      <div className="col-xxl flex flex-col gap-6">
+      <div className="col-xxl flex flex-col gap-6" onClick={()=>dispatch(makeInvisible(false))}>
         <span className="text-2xl text-purple-400 font-medium">Complaint/Raise your Ticket</span>
         <div className="bg-white shadow-lg rounded-lg gap-5 p-5">
         <h5 className="text-xl font-medium mb-5">Describe Your Complaint</h5>

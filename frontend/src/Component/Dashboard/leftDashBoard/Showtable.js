@@ -3,6 +3,7 @@
 
 import { useDispatch, useSelector } from "react-redux";
 import { addClientSearch } from "../../redux/clientSlice";
+import { makeInvisible } from "../../redux/TemplateSlice";
 
 export const Showtable = ()=>{
     const  clients = useSelector((store)=>store.client.clientSearch);
@@ -12,7 +13,7 @@ export const Showtable = ()=>{
     }
 
     return(
-<div className="relative bg-slate-100 w-full">
+<div className="relative bg-slate-100 w-full " onClick={()=>dispatch(makeInvisible(false))}>
       <table className="min-w-full bg-white border border-gray-300">
         <thead>
           <tr>

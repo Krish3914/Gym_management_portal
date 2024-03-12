@@ -1,6 +1,10 @@
+import { useDispatch } from "react-redux"
+import { makeInvisible } from "../redux/TemplateSlice"
+
 export const Cards = ()=>{
+  const dispatch = useDispatch();
     return(
-        <div className="grid grid-cols-2 grid-rows-2 gap-6 w-9/12">
+        <div className="grid grid-cols-2 grid-rows-2 gap-6 w-9/12" onClick={()=>dispatch(makeInvisible(false))}>
         <div className="flex flex-col bg-white shadow-xl p-2 gap-2 rounded-lg">
           <img
             src={require("../../images/icons/unicons/chart-success.png")}

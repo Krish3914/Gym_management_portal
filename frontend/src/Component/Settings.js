@@ -1,11 +1,13 @@
 import axios from "axios";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { apiURL } from "./utils/commonData";
+import { makeInvisible } from "./redux/TemplateSlice";
 
 const Setting = ()=>{
+    const dispatch = useDispatch();
 
     // getting values from redux
     const user = useSelector((state)=>state.user.userData);
@@ -17,10 +19,12 @@ const Setting = ()=>{
         confirmpass:""
     });
     const resetPassword = async()=>{
+        if(!passwordData.newpass.trim() || !passwordData.confirmpass.trim())
+            return toast.warning("Please Fill All Fields")
         // console.log("the data we got ",passwordData);
         if(passwordData.newpass !== passwordData.confirmpass){
-            toast.error("password and confirm password does not match");
-            return;
+            return toast.error("password and confirm password does not match");
+            
         }
 
         try{
@@ -32,7 +36,7 @@ const Setting = ()=>{
         
         throw new Error("something went wrong ");
         } catch(err){
-            console.log("error");
+            toast.error("Your Previous Password is Wrong Please Type Again")
         }
     }
 
@@ -47,7 +51,7 @@ const Setting = ()=>{
     }
 
     return(
-        <div className="flex flex-col gap-6 ">
+        <div className="flex flex-col gap-6 " onClick={()=>dispatch(makeInvisible(false))}>
             <div className="flex flex-col">
             <span className="self-center text-xl">Reset Your Password Here</span>
             <label>

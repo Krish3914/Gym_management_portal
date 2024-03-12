@@ -6,7 +6,7 @@ const HomeFooter = ()=>{
                 <div class="col-lg-4">
                     <div class="contact-option">
                         <span>Phone</span>
-                        <p> +1 548-333-2060</p>
+                        <p> +1 (548) 333-2060</p>
                     </div>
                 </div>
                 <div class="col-lg-4">
@@ -18,7 +18,7 @@ const HomeFooter = ()=>{
                 <div class="col-lg-4">
                     <div class="contact-option">
                         <span>Email</span>
-                        <p>contactcompany@Gutim.com</p>
+                        <p>info@membersmonitor.com</p>
                     </div>
                 </div>
             </div>

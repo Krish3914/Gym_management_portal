@@ -1,5 +1,5 @@
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import iconImage from "../images/favicon/favicon.ico";
+import iconImage from "../images/logo.png";
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -73,18 +73,15 @@ export const Signup = () => {
   }
   
   return (
-    <div className="h-screen bg-slate-100 flex justify-center items-center">
-      <form className="w-3/12 flex flex-col gap-4 rounded-lg bg-white p-4 my-2">
-        <div className="flex self-center gap-2 ">
-          <img src={iconImage} className="h-10 self-center"></img>
-          <span className="text-2xl font-semibold opacity-50">sneat</span>
-        </div>
+    <div className="h-screen bg-slate-100 flex justify-center  lg:items-center overflow-hidden">
+      <form className="h-[90vh] sm:w-1/2 lg:w-1/3 xl:w-3/12 mt-4 flex flex-col gap-4 rounded-lg bg-white px-4 py-2 w-10/12">
+          <img src={iconImage} className=" w-1/2 mx-auto"/>
         <div className="flex flex-col gap-1">
           <span className="text-xl opacity-80 tracking-wide font-medium">
             Adventure starts here 🚀
           </span>
           <span className="opacity-60">
-            Make your app management easy and fun!
+            Make your Gym mMnagement easy and fun!
           </span>
         </div>
         <div className="flex flex-col">

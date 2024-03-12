@@ -4,11 +4,12 @@ import { useEffect } from "react";
 import { Searchbar } from "./Searchbar";
 import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {apiURL} from "./utils/commonData"
+import { makeInvisible, updateVisibility } from "./redux/TemplateSlice";
 
 export const Dashboard = () => {
-  let userRedux = useSelector((store)=>store.user.userData);
+  const dispatch = useDispatch()
   const navigate = useNavigate();
   const checkValidity = async () => {
     const sessionStorageToken = sessionStorage.getItem('token');
@@ -30,13 +31,13 @@ export const Dashboard = () => {
   }, []);
 
   return (
-    <div className="flex bg-slate-100 ">
-      <div className="w-2/12">
+    <div className="flex bg-slate-100 " onClick={()=>  dispatch(makeInvisible(false))}>
+      <div className="w-2/12 hidden lg:block">
         <LeftDashboard />
       </div>
-      <div className="w-9/12 mx-auto">
+      <div className=" lg:w-9/12 mx-auto ">
         <Searchbar />
-        <Outlet />
+        <Outlet/>
       </div>
       <ToastContainer />
     </div>

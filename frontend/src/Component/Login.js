@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import iconImage from "../images/favicon/favicon.ico";
+import iconImage from "../images/logo.png";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -68,16 +68,13 @@ export const Login = () => {
   };
 
   return (
-    <div className="h-screen bg-slate-100 flex justify-center items-center relative">
-      {console.log("hi shubahm")}
-      <div className="w-3/12 flex flex-col gap-5 rounded-lg bg-white p-5 my-2 relative">
-        <div className="flex self-center gap-2 ">
-          <img src={iconImage} className="w-10 self-center"></img>
-          <span className="text-2xl font-semibold opacity-50">sneat</span>
-        </div>
+    <div className="h-screen bg-slate-100 flex justify-center items-center relative overflow-hidden">
+      {/* console.log("shubhamnikamsn007@gmail.com") */}
+            <div className="h-[90vh] sm:w-1/2 lg:w-1/3 xl:w-3/12 flex flex-col gap-5 rounded-lg bg-white p-5 relative w-10/12">
+          <img src={iconImage} className="w-1/2 mx-auto"/>
         <div className="flex flex-col gap-1">
           <span className="text-xl opacity-60 tracking-wide font-medium">
-            Welcome to Sneat! <span className="opacity-100 font-bold">👋</span>
+            Welcome to Member's Monitor! <span className="opacity-100 font-bold">👋</span>
           </span>
           <span className="opacity-60">
             Please sign-in to your account and start the adventure

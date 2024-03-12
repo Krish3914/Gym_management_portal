@@ -5,6 +5,7 @@ import axios from "axios";
 import { addUserData } from "../../redux/UserSlice";
 import { apiURL } from "../../utils/commonData";
 import {Spinner} from "../../Spinner";
+import { makeInvisible } from "../../redux/TemplateSlice";
 
 const UserProfile = () => {
   const userInfo = useSelector((store) => store.user.userData);
@@ -96,7 +97,7 @@ const UserProfile = () => {
   return user === undefined || loading? (
     <Spinner/>
   ) : (
-    <div className="flex flex-col gap-5 h-screen">
+    <div className="flex flex-col gap-5 h-screen" onClick={()=>dispatch(makeInvisible(false))}>
       <div className="flex w-full gap-8">
         <img
           src={!user?.photo ? `https://ui-avatars.com/api/?name=${user?.name}` : user?.photo}

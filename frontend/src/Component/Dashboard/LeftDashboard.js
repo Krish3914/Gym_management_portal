@@ -2,17 +2,17 @@ import { FaChevronRight } from "react-icons/fa";
 import iconImage from "../../images/favicon/favicon.ico";
 import { Link } from "react-router-dom";
 import { Searchbar } from "../Searchbar";
+import logopng from "../../images/logo.png"
 
 export const LeftDashboard = () => {
   return (
     <>
-      <div className=" bg-white p-4 flex flex-col gap-4 h-screen">
+      <div className="bg-white p-4 flex flex-col gap-4 h-screen">
         <div className="flex flex-col gap-2 ">
           <Link to={"navbar"}>
             {" "}
             <div className="flex self-start gap-2 ">
-              <img src={iconImage} className="h-10 self-center "></img>
-              <span className="text-2xl font-semibold opacity-70">sneat</span>
+              <img src={logopng}/>
             </div>
           </Link>
           <div className="bg-purple-200 p-3 font-medium opacity-80 rounded-md text-purple-700">

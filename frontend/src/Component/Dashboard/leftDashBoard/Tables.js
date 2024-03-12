@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addClient } from "../../redux/clientSlice";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { apiURL } from "../../utils/commonData";
+import { makeInvisible } from "../../redux/TemplateSlice";
 
 const Table = () => {
   const selector = useSelector((store) => store.client.client);
@@ -102,7 +103,7 @@ const Table = () => {
   return selector.length === 0 ? (
     <ShimmerTable />
   ) : (
-    <div>
+    <div onClick={()=>dispatch(makeInvisible(false))} className="bg-blue-800">
       <table className="min-w-full bg-white border border-gray-300 shadow-lg">
         <thead className="bg-gray-100">
           <tr>

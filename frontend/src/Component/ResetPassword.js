@@ -3,21 +3,22 @@ import { useState } from "react";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { apiURL } from "./utils/commonData";
+import { makeInvisible } from "./redux/TemplateSlice";
+import { useDispatch } from "react-redux";
 
 const ResetPassword = () => {
+  const dispatch = useDispatch();
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmPassword] = useState("");
   const{email} = useParams();
     const navigate = useNavigate();
   const resetPassword = async () => {
-    console.log(
-      "password to set is ",
-      password,
-      "confirm password is ",
-      confirmpassword
-    );
-    if (confirmpassword !== password) {
-      return toast.warning("Password and Confirm PAssword Does not match");
+
+    if(!confirmpassword.trim() || !password.trim()){
+      return toast.warning("Please Fill All Details");
+    }
+    if (confirmpassword !== password ) {
+      return toast.warning("Password and Confirm Password Does not match");
     }
 
     try {
@@ -31,14 +32,13 @@ const ResetPassword = () => {
         toast.success("Update Password Successfully");
         navigate("/login");
       }
-      console.log("eah we got result ", resetPasswordResult);
     } catch (err) {
       console.error("error we got is ",err.message);
     }
   };
 
   return (
-    <div className="w-full h-screen bg-purple-300 flex justify-center items-center">
+    <div className="w-full h-screen bg-purple-300 flex justify-center items-center" onClick={()=>dispatch(makeInvisible(false))}>
       <div className="flex justify-center items-center bg-white p-4 shadow-lg rounded-lg flex-col gap-6">
         <h4>Please Reset Your Password</h4>
         <input

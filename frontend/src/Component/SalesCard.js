@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { addClient } from "./redux/clientSlice";
 import { apiURL } from "./utils/commonData";
+import { makeInvisible } from "./redux/TemplateSlice";
 export const SalesCard = () => {
   const navigate = useNavigate();
   const selector = useSelector((store) => store.client.client);
@@ -86,7 +87,7 @@ export const SalesCard = () => {
   },[]);
 
   return (
-    <div className="">
+    <div className="" onClick={()=>dispatch(makeInvisible(false))}>
       {/* {console.log("client we get are",selector)} */}
       <button
         className="bg-purple-400 text-white py-1 px-4 mb-5 rounded-lg font-medium shadow-lg hover:bg-purple-500 duration-500"

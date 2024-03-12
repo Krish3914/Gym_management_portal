@@ -8,7 +8,9 @@ import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserData } from "./redux/UserSlice";
 import { apiURL } from "./utils/commonData";
+import { useState } from "react";
 const Home = () => {
+  const [show,setShow] = useState(false);
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.userData);
   const dispatch = useDispatch();
@@ -71,12 +73,12 @@ const Home = () => {
   };
 
   return (
-    <div className="w-full h-screen">
+    <div className="w-full h-screen" onClick={()=>setShow(false)}>
       {/* <div id="preloder">
         <div className="loader"></div>
     </div> */}
-      <HomeHeader />
-      <section className="hero-section set-bg ">
+      <HomeHeader show={show} setShow={setShow}/>
+      <section className="hero-section set-bg1 ">
         <div className="container">
           <div className="row">
             <div className="col-lg-8">
@@ -84,8 +86,7 @@ const Home = () => {
                 <span>MEMBERS RECORD</span>
                 <h1>GYM MANAGER</h1>
                 <p>
-                 Manage your members precisely and free
-                  <br /> shortcode which lets
+                Manage your fitness club members pricisely and totally free
                 </p>
                 <Link to={"/signup"} className="primary-btn">
                   Get Started
@@ -113,16 +114,12 @@ const Home = () => {
               <div className="about-text">
                 <h2>Story About Us</h2>
                 <p className="first-para">
-                  Lorem ipsum proin gravida nibh vel velit auctor aliquet.
-                  Aenean pretium sollicitudin, nascetur auci elit consequat
-                  ipsutissem niuis sed odio sit amet nibh vulputate cursus a
-                  amet.
+                Empowering Gyms with Next-Level Member Management
+
+Welcome to Members Monitor, your ultimate solution for seamless gym member management.
                 </p>
                 <p className="second-para">
-                  Etiam rhoncus. Maecenas tempus, tellus eget condimentum
-                  rhoncus, gravida quam semper libero sit amet. Etiam rhoncus.
-                  Maecenas tempus, tellus eget condimentum rhoncus, gravida quam
-                  semper libero sit amet.
+                At Members Monitor, we're passionate about revolutionizing the way gyms handle their memberships. Our cutting-edge software empowers gym owners and managers to effortlessly manage their members, streamline operations, and enhance the overall gym experience.
                 </p>
                 <a href="#" className="primary-btn">
                   Read More
@@ -147,37 +144,32 @@ const Home = () => {
                   <div className="col-md-6">
                     <div className="services-item bg-gray">
                       <img src="img/services/service-icon-1.png" alt="" />
-                      <h4>Members Management</h4>
+                      <h4>Innovative Solutions</h4>
                       <p>
-                        Aenean massa. Cum sociis Theme et natoque penatibus et
-                        magnis dis part urient montes.
+                       We pride ourselves on offering innovative software solutions specifically tailored to the needs of gym owners.
                       </p>
                     </div>
                     <div className="services-item bg-gray pd-b">
                       <img src="img/services/service-icon-3.png" alt="" />
-                      <h4>Renewal Notifications</h4>
+                      <h4>User-Friendly Interface</h4>
                       <p>
-                        Aenean massa. Cum sociis Theme et natoque penatibus et
-                        magnis dis part urient montes.
+                       Say goodbye to clunky, outdated systems. Members Monitor boasts an intuitive interface.
+
                       </p>
                     </div>
                   </div>
                   <div className="col-md-6">
                     <div className="services-item">
                       <img src="img/services/service-icon-2.png" alt="" />
-                      <h4>Employee Manage</h4>
+                      <h4>Seamless Integration</h4>
                       <p>
-                        Aenean massa. Cum sociis Theme et natoque penatibus et
-                        magnis dis part urient montes.
-                      </p>
+                       Our software seamlessly integrates with existing gym systems, ensuring a smooth transition.</p>
                     </div>
                     <div className="services-item pd-b">
                       <img src="img/services/service-icon-4.png" alt="" />
-                      <h4>Track Growth</h4>
+                      <h4>24/7 Support</h4>
                       <p>
-                        Aenean massa. Cum sociis Theme et natoque penatibus et
-                        magnis dis part urient montes.
-                      </p>
+                      We're committed to providing exceptional customer service. Our dedicated support team is available for 24/7 </p>
                     </div>
                   </div>
                 </div>
@@ -310,24 +302,6 @@ const Home = () => {
                 <div className="trainer-text">
                   <h5>Karan Tiwari</h5>
                   <span>Founder</span>
-                  <p>
-                    non numquam eius modi tempora incidunt ut labore et dolore
-                    magnam aliquam quaerat voluptatem.
-                  </p>
-                  <div className="trainer-social">
-                    <a href="#">
-                      <i className="fa fa-facebook"></i>
-                    </a>
-                    <a href="#">
-                      <i className="fa fa-instagram"></i>
-                    </a>
-                    <a href="#">
-                      <i className="fa fa-twitter"></i>
-                    </a>
-                    <a href="#">
-                      <i className="fa fa-pinterest"></i>
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>
@@ -337,24 +311,6 @@ const Home = () => {
                 <div className="trainer-text">
                   <h5>Shubhanker Tiwari</h5>
                   <span>CTO</span>
-                  <p>
-                    non numquam eius modi tempora incidunt ut labore et dolore
-                    magnam aliquam quaerat voluptatem.
-                  </p>
-                  <div className="trainer-social">
-                    <a href="#">
-                      <i className="fa fa-facebook"></i>
-                    </a>
-                    <a href="#">
-                      <i className="fa fa-instagram"></i>
-                    </a>
-                    <a href="#">
-                      <i className="fa fa-twitter"></i>
-                    </a>
-                    <a href="#">
-                      <i className="fa fa-pinterest"></i>
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>
@@ -364,24 +320,6 @@ const Home = () => {
                 <div className="trainer-text">
                   <h5>Akasksha Tiwari</h5>
                   <span>Business Developer</span>
-                  <p>
-                    non numquam eius modi tempora incidunt ut labore et dolore
-                    magnam aliquam quaerat voluptatem.
-                  </p>
-                  <div className="trainer-social">
-                    <a href="#">
-                      <i className="fa fa-facebook"></i>
-                    </a>
-                    <a href="#">
-                      <i className="fa fa-instagram"></i>
-                    </a>
-                    <a href="#">
-                      <i className="fa fa-twitter"></i>
-                    </a>
-                    <a href="#">
-                      <i className="fa fa-pinterest"></i>
-                    </a>
-                  </div>
                 </div>
               </div>
             </div>
@@ -735,7 +673,7 @@ const Home = () => {
                 <Link to={"/contact"}>
                   <span>contact us</span>
                 </Link>
-                <h2>09 746 204</h2>
+                <h2>+1 (548) 333-2060</h2>
                 <p>
                   If you trust us on your journey they dark sex does not
                   disappoint you!

@@ -1,13 +1,15 @@
 import axios from "axios";
 import {  useId, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Spinner } from "../../Spinner";
 import { apiURL } from "../../utils/commonData";
+import { makeInvisible } from "../../redux/TemplateSlice";
 
 export const Newadduser = () => {
   //accessing user(Owners) id from the store
+  const dispatch = useDispatch();
   const userId = useSelector((store)=>store.user.userData?._id);
   const [userInfo, setuserInfo] = useState({
     name: "",
@@ -77,7 +79,7 @@ export const Newadduser = () => {
   };
 
   return !userId?(<Spinner/>):(
-    <form className="flex flex-col gap-4 bg-white rounded-lg w-9/12 p-4 justify-center my-10">
+    <form className="flex flex-col gap-4 bg-white rounded-lg w-9/12 p-4 justify-center my-10" onClick={()=>dispatch(makeInvisible(false))}>
       <div className="flex gap-4">
         <label htmlFor="name" className="my-auto">
           Name

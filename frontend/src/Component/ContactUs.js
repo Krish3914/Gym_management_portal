@@ -1,10 +1,12 @@
+import { useState } from "react";
 import { HomeFooter } from "./HomeFooter";
 import { HomeHeader } from "./HomeHeader";
 
 const ContactUs = ()=>{
+    const[show,setShow] = useState(false);
     return(
-        <div>
-    <HomeHeader/>
+        <div onClick={()=>{setShow(false)}}>
+    <HomeHeader show={show} setShow={setShow}/>
     <section class="breadcrumb-section set-bg">
         <div class="container">
             <div class="row">
@@ -57,7 +59,7 @@ const ContactUs = ()=>{
                                 </div>
                                 <div class="cw-text">
                                     <h5>Mail</h5>
-                                    <p>hellocolorlib@ gmail.com</p>
+                                    <p>info@membersmonitor.com</p>
                                 </div>
                             </div>
                         </div>

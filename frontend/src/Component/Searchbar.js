@@ -4,9 +4,12 @@ import { Template } from "./Template";
 import { useDispatch, useSelector } from "react-redux";
 import { Showtable } from "./Dashboard/leftDashBoard/Showtable";
 import { addClientSearch } from "./redux/clientSlice";
+import { makeInvisible, updateVisibility } from "./redux/TemplateSlice";
 
 export const Searchbar = () => {
   const dispatch = useDispatch();
+  const templateVisibility = useSelector((store)=>store.templateSlice.isVisible);
+  console.log("the templateVisibility status is ",templateVisibility)
   const selector = useSelector((store) => store.client.client);
   const userInfo = useSelector((store)=>store.user.userData);
   const [showTemplate, setshowTemplate] = useState(false);
@@ -26,8 +29,8 @@ export const Searchbar = () => {
   };
 
   return (
-    <div className=" flex justify-between bg-white rounded-xl mt-4 mb-10 shadow-xl">
-      <div className=" p-4 flex items-center w-full gap-4">
+    <div className=" flex justify-between rounded-xl mt-4 mb-10 shadow-xl ">
+      <div className="w-8/12 p-4 flex items-center gap-4" onClick={()=>dispatch(makeInvisible(false))}>
         <CiSearch className="ml-4 text-xl" />
         <input
           className=" searchinputs p-1 focus:border-none"
@@ -45,11 +48,12 @@ export const Searchbar = () => {
         ):<div className="hidden"></div>}
       </div>
       <img
-        src={userInfo?.photo?userInfo.photo:require("../images/avatars/6.png")}
-        className="w-14 h-14 rounded-full cursor-pointer my-auto"
-        onClick={() => setshowTemplate(!showTemplate)}
+        src={userInfo?.photo?userInfo.photo:require("../images/avatars/profile-user.png")}
+        className="w-10 h-10 rounded-full cursor-pointer my-auto mr-4 "
+        onClick={(e) =>{ e.stopPropagation(); dispatch(updateVisibility(!templateVisibility))}
+        }
       />
-      {showTemplate ? <Template /> : <div className="hidden"></div>}
+      {templateVisibility ? <Template /> : <div className="hidden"></div>}
     </div>
   );
 };

@@ -13,6 +13,8 @@ export const ForgotPassword = () => {
   const[email,setEmail] = useState(null);
   const sendOtp = async()=>{
     try{
+      if(!email)
+        return toast.warning("Please Fill Email Field");
       if(!isValidEmail(email))
         return toast.warning("Email is not valid")
 
@@ -21,16 +23,12 @@ export const ForgotPassword = () => {
       const result = await axios.post(`${apiURL}send-otp`,{email});
       console.log("we got the result ",result);
       setLoader(false);
-      if(result.data.message){
+      if(result?.data?.message){
         navigate(`/enterotp/${email}`);
-
       }
-
-
     } catch(err){
       setLoader(false);
       toast.error("User Not Exists");
-      console.log(err.message);
     }
   }
   const handleMailChange = (e)=>{ setEmail(e.target.value);}
@@ -38,12 +36,12 @@ export const ForgotPassword = () => {
   return loader?<Spinner/>:(
     <div className="flex h-screen justify-center items-center bg-slate-100 relative">
       <button
-        className="bg-[#696cff] w-1/12 absolute left-8 top-10 text-white py-1 px-4 rounded-lg font-medium shadow-lg hover:bg-[#700cff] duration-500"
+        className="bg-[#696cff] w-24 absolute left-8  text-center top-10 text-white py-1 px-4 rounded-lg font-medium shadow-lg hover:bg-[#700cff] duration-500"
         onClick={() => navigate(-1)}
       >
         Back
       </button>
-      <div className="bg-white p-4 flex flex-col justify-between gap-10 w-3/12 shadow-lg rounded-lg">
+      <div className="w-11/12 sm:w-3/4 md:w-1/2 lg:w-3/12 bg-white p-4 flex flex-col justify-between gap-10  shadow-lg rounded-lg">
         <div className="flex gap-2 justify-center">
           <img src={iconImage} className="w-10 self-center"></img>
           <span className="text-2xl font-semibold opacity-50">sneat</span>
