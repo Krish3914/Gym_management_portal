@@ -8,7 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
 import { addUserData } from "./redux/UserSlice";
 import { apiURL } from "./utils/commonData";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const Home = () => {
   const [show,setShow] = useState(false);
   const navigate = useNavigate();
@@ -71,6 +71,12 @@ const Home = () => {
       toast.error("please login first");
     }
   };
+
+  useEffect(()=>{
+    return ()=>{
+      toast.dismiss();
+    }
+  },[])
 
   return (
     <div className="w-full h-screen" onClick={()=>setShow(false)}>
@@ -492,7 +498,7 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
                   </li>
                   <li>
                     <p>Amount of people</p>
-                    <span>No</span>
+                    <span>Yes</span>
                   </li>
                   <li>
                     <p>Number of visits</p>
@@ -527,7 +533,7 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
                   </li>
                   <li>
                     <p>Amount of people</p>
-                    <span>No</span>
+                    <span>Yes</span>
                   </li>
                   <li>
                     <p>Number of visits</p>

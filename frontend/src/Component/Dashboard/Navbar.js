@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { makeInvisible } from "../redux/TemplateSlice";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export const Navbar = () => {
   const dispatch = useDispatch();
@@ -9,6 +11,9 @@ export const Navbar = () => {
   const role = useSelector((state) => state?.user?.userData?.role);
   const noOfUsers = useSelector((state) => state.client.client);
   const expiredUserCount = useSelector((state)=>state.client.expiredUserCount)
+  useEffect(()=>{
+    toast.dismiss();
+  },[])
   return (
     <div className="" onClick={()=>dispatch(makeInvisible(false))}>
       <table className=" flex flex-col gap-10">

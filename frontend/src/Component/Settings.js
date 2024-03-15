@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
@@ -50,6 +50,9 @@ const Setting = ()=>{
         }));
     }
 
+    useEffect(()=>{
+        toast.dismiss();
+    },[])
     return(
         <div className="flex flex-col gap-6 " onClick={()=>dispatch(makeInvisible(false))}>
             <div className="flex flex-col">

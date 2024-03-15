@@ -84,6 +84,9 @@ export const SalesCard = () => {
     // console.log("priting selector ",selector);
     if(selector.length === 0)
       getClients();
+    return ()=>{
+      toast.dismiss()
+    }
   },[]);
 
   return (

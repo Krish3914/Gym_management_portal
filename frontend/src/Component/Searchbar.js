@@ -37,6 +37,7 @@ export const Searchbar = () => {
           placeholder="Search by name, phone etc.."
           value={searchData}
           onChange={changeHandle}
+          autocomplete="off"
         />
         {searchData?(
         <span

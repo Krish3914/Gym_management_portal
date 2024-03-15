@@ -29,6 +29,9 @@ export const Dashboard = () => {
   };
   useEffect(() => {
     checkValidity();
+    return ()=>{
+     toast.dismiss();
+    }
   }, []);
 
   return (

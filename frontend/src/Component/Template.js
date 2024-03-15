@@ -1,5 +1,7 @@
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const Template = () => {
   const navigate = useNavigate();
@@ -9,6 +11,9 @@ export const Template = () => {
   //   sessionStorage.removeItem("token");
   //   navigate("/");
   // }
+  useEffect(()=>{
+    toast.dismiss();
+  },[])
   return (
     <div className="absolute text-center right-10 top-14 flex w-1/12 p-4 bg-white gap-4 z-20 justify-between rounded-xl shadow-xl flex-col">
       <div className="flex justify-center flex-row gap-5 ">

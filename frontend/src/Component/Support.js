@@ -1,7 +1,12 @@
 import { useDispatch } from "react-redux";
 import { makeInvisible } from "./redux/TemplateSlice";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Support = () => {
+    useEffect(()=>{
+      toast.dismiss();
+  },[])
   const dispatch = useDispatch();
     return (
       <div className="col-xxl flex flex-col gap-6" onClick={()=>dispatch(makeInvisible(false))}>

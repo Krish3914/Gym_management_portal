@@ -2,7 +2,7 @@ import axios from "axios";
 import iconImage from "../images/favicon/favicon.ico";
 import { Link, useNavigate } from "react-router-dom";
 import isValidEmail from "./utils/validEmail";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {Spinner} from "./Spinner";
 import { ToastContainer, toast } from "react-toastify";
 import { apiURL } from "./utils/commonData";
@@ -32,6 +32,12 @@ export const ForgotPassword = () => {
     }
   }
   const handleMailChange = (e)=>{ setEmail(e.target.value);}
+
+  useEffect(()=>{
+    return ()=>{
+      toast.dismiss();
+    }
+  },[]);
 
   return loader?<Spinner/>:(
     <div className="flex h-screen justify-center items-center bg-slate-100 relative">
