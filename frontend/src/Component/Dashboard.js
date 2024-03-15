@@ -6,6 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {apiURL} from "./utils/commonData"
+import { Footer } from "./Footer";
 import { makeInvisible, updateVisibility } from "./redux/TemplateSlice";
 
 export const Dashboard = () => {
@@ -38,6 +39,7 @@ export const Dashboard = () => {
       <div className=" lg:w-9/12 mx-auto ">
         <Searchbar />
         <Outlet/>
+        <Footer/>
       </div>
       <ToastContainer />
     </div>

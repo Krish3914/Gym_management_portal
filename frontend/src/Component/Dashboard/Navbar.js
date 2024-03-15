@@ -11,13 +11,13 @@ export const Navbar = () => {
   const expiredUserCount = useSelector((state)=>state.client.expiredUserCount)
   return (
     <div className="" onClick={()=>dispatch(makeInvisible(false))}>
-      <table className=" flex flex-col gap-10 bg-red-400">
+      <table className=" flex flex-col gap-10">
         <tr className="flex gap-10">
-          <td className="w-8/12 bg-white rounded-lg ">
+          <td className="w-8/12 bg-white rounded-lg">
             {" "}
             <div className="bg-white rounded-xl p-2">
               <div className="flex ">
-                <div className="flex mx-auto flex-col gap-6 mt-2 w-1/2 text-xs">
+                <div className="flex mx-auto flex-col gap-6 mt-2 w-1/2">
                   <span className="text-purple-400 font-medium text-xl">
                     Welcome <span className="text-xl ">{role?role:userName}🎉</span>
                   </span>
@@ -35,7 +35,7 @@ export const Navbar = () => {
                 
                 <img
                   src={require("../../images/illustrations/man-with-laptop-light.png")}
-                  className="w-24 h-24 lg:w-4/12 self-center"
+                  className="w-20 h-30 lg:w-4/12 self-center"
                 />
               </div>
             </div>
@@ -111,14 +111,7 @@ export const Navbar = () => {
         </tr>
       </table>
       
-      <footer class="content-footer footer bg-footer-theme absolute bottom-0">
-              <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                <div class="mb-2 mb-md-0 hidden lg:block">
-                Product by Maskottchen Technology
-                  <a href="https://maskottchen.tech/" target="_blank" class="footer-link fw-bolder" className=" text-[#696cff]"> Click Here</a>
-                </div>
-              </div>
-            </footer>
+   
     </div>
   );
 };

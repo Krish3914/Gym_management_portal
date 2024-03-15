@@ -384,10 +384,9 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
           <div className="row">
             <div className="col-lg-6">
               <div className="banner-text">
-                <h2>Get training today</h2>
+                <h2>MANAGE YOUR TRAINERS EFFICIENTLY</h2>
                 <p>
-                  Gimply dummy text of the printing and typesetting industry.
-                  Lorem Ipsum has been the industry’s standard.
+                Simplify trainer management, streamline scheduling, track progress, and enhance communication for improved productivity and performance.
                 </p>
                 <a href="#" className="primary-btn banner-btn">
                   Contact Now
@@ -428,7 +427,7 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
                   </li>
                   <li>
                     <p>Amount of people</p>
-                    <span>01 person</span>
+                    <span>No</span>
                   </li>
                   <li>
                     <p>Number of visits</p>
@@ -458,7 +457,7 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
                   </li>
                   <li>
                     <p>Amount of people</p>
-                    <span>01 person</span>
+                    <span>No</span>
                   </li>
                   <li>
                     <p>Number of visits</p>
@@ -493,7 +492,7 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
                   </li>
                   <li>
                     <p>Amount of people</p>
-                    <span>01 person</span>
+                    <span>No</span>
                   </li>
                   <li>
                     <p>Number of visits</p>
@@ -528,7 +527,7 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
                   </li>
                   <li>
                     <p>Amount of people</p>
-                    <span>01 person</span>
+                    <span>No</span>
                   </li>
                   <li>
                     <p>Number of visits</p>
