@@ -65,6 +65,19 @@ const UserProfile = () => {
     setSelectImage(e.target.files[0]);
   };
 
+  function convertToBase64(file){
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        resolve(fileReader.result)
+      };
+      fileReader.onerror = (error) => {
+        reject(error)
+      }
+    })
+  }
+
   const uploadImage = async (e) => {
     if (!selectImage) {
       toast.error("Please select the image");
@@ -72,20 +85,26 @@ const UserProfile = () => {
     }
 
     try {
-      setLoading(true);
-      const formData = new FormData();
-      formData.append("file", selectImage);
-      formData.append("name", selectImage.name);
-      formData.append("email", userInfo.email);
+      if(selectImage.size>50000){
+        return toast.error("image size should be less than 21kb");
+      }
+      const convertedImage = await convertToBase64(selectImage);
+      // setLoading(true);
+      // const formData = new FormData();
+      // formData.append("file", selectImage);
+      // formData.append("name", selectImage.name);
+      // formData.append("email", userInfo.email);
 
       const imageUploadResult = await axios.put(
         `${apiURL}upload-image`,
-        formData
+        {convertedImage:convertedImage,email:userInfo.email}
       );
+
+      console.log("image Upload Result is ",imageUploadResult.data.data);
 
       dispatch(addUserData(imageUploadResult.data.data));
       setUser(imageUploadResult.data.data);
-        setLoading(false);
+        // setLoading(false);
       toast.success("Image uploaded successfully!");
     } catch (err) {
       setLoading(false);
