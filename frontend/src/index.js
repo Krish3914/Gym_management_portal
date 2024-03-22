@@ -29,6 +29,7 @@ import { Support } from "./Component/Support";
 import {FAQ} from "./Component/FAQ";
 import { EnterOtp } from "./Component/EnterOTP";
 import { ResetPassword } from "./Component/ResetPassword";
+import { EnterOtpToVerify } from "./Component/EnterOtpToVerify";
 import { updateVisibility } from "./Component/redux/TemplateSlice";
 
 
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
       {
         path:"/reset-password/:email",
         element:<ResetPassword/>
+      },
+      {
+        path:"enterotptoverify/:email",
+        element:<EnterOtpToVerify/>
       },
       {
         path: "/dashboard",

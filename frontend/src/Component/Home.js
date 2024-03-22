@@ -394,9 +394,9 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
                 <p>
                 Simplify trainer management, streamline scheduling, track progress, and enhance communication for improved productivity and performance.
                 </p>
-                <a href="#" className="primary-btn banner-btn">
-                  Contact Now
-                </a>
+                <Link to={"/signup"} className="primary-btn">
+                  Get Started
+                </Link>
               </div>
             </div>
             <div className="col-lg-5">
@@ -428,16 +428,16 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
                     <span>12 months</span>
                   </li>
                   <li>
-                    <p>Personal trainer</p>
-                    <span>00 person</span>
+                    <p>Employee Management</p>
+                    <span>Yes</span>
                   </li>
                   <li>
-                    <p>Amount of people</p>
+                    <p>Members Attendance</p>
                     <span>No</span>
                   </li>
                   <li>
-                    <p>Number of visits</p>
-                    <span>Unlimited</span>
+                    <p>SMS Alert</p>
+                    <span>No</span>
                   </li>
                 </ul>
                 <button className="primary-btn membership-btn" onClick={()=>navigate("/login")}>Start Now</button>
@@ -450,7 +450,7 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
                   <div className="triangle"></div>
                 </div>
                 <h2 className="mi-price">
-                  $1.9<span>/01 mo</span>
+                  $1.9<span>/M</span>
                 </h2>
                 <ul>
                   <li>
@@ -458,16 +458,16 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
                     <span>12 months</span>
                   </li>
                   <li>
-                    <p>Personal trainer</p>
-                    <span>01 person</span>
+                    <p>Employee Management</p>
+                    <span>Yes</span>
                   </li>
                   <li>
-                    <p>Amount of people</p>
+                    <p>Members Attendance</p>
                     <span>No</span>
                   </li>
                   <li>
-                    <p>Number of visits</p>
-                    <span>Unlimited</span>
+                    <p>SMS Alert</p>
+                    <span>No</span>
                   </li>
                 </ul>
                 <button
@@ -485,7 +485,7 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
                   <div className="triangle"></div>
                 </div>
                 <h2 className="mi-price">
-                  $3.9<span>/01 mo</span>
+                  $3.9<span>/M</span>
                 </h2>
                 <ul>
                   <li>
@@ -493,16 +493,16 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
                     <span>12 months</span>
                   </li>
                   <li>
-                    <p>Personal trainer</p>
-                    <span>01 person</span>
-                  </li>
-                  <li>
-                    <p>Amount of people</p>
+                    <p>Employee Management</p>
                     <span>Yes</span>
                   </li>
                   <li>
-                    <p>Number of visits</p>
-                    <span>Unlimited</span>
+                    <p>Members Attendance</p>
+                    <span>Yes</span>
+                  </li>
+                  <li>
+                    <p>SMS Alert</p>
+                    <span>Yes</span>
                   </li>
                 </ul>
                 <button
@@ -516,11 +516,11 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
             <div className="col-lg-3">
               <div className="membership-item">
                 <div className="mi-title">
-                  <h4>Execuitve</h4>
+                  <h4>Executive</h4>
                   <div className="triangle"></div>
                 </div>
                 <h2 className="mi-price">
-                  $7.9<span>/01 mo</span>
+                  $7.9<span>/M</span>
                 </h2>
                 <ul>
                   <li>
@@ -528,16 +528,16 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
                     <span>12 months</span>
                   </li>
                   <li>
-                    <p>Personal trainer</p>
-                    <span>01 person</span>
-                  </li>
-                  <li>
-                    <p>Amount of people</p>
+                    <p>Employee Management</p>
                     <span>Yes</span>
                   </li>
                   <li>
-                    <p>Number of visits</p>
-                    <span>Unlimited</span>
+                    <p>Members Attendance</p>
+                    <span>Yes</span>
+                  </li>
+                  <li>
+                    <p>SMS Alert</p>
+                    <span>Yes</span>
                   </li>
                 </ul>
                 <button
@@ -660,14 +660,13 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
                 data-setbg="img/footer-banner/footer-banner-1.jpg"
               >
                 <span>New member</span>
-                <h2>7 days for free</h2>
+                <h2>Completely Free For First Year</h2>
                 <p>
-                  Complete the training sessions with us, surely you will be
-                  happy
+                 For First 12 months You Can Enjoy All Featues with Zero Costs
                 </p>
-                <a href="#" className="primary-btn">
+                <Link to={"/signup"} className="primary-btn">
                   Get Started
-                </a>
+                </Link>
               </div>
             </div>
             <div className="col-lg-6">
@@ -680,12 +679,11 @@ Welcome to Members Monitor, your ultimate solution for seamless gym member manag
                 </Link>
                 <h2>+1 (548) 333-2060</h2>
                 <p>
-                  If you trust us on your journey they dark sex does not
-                  disappoint you!
+                If you entrust us with your journey, the depths of darkness will not disappoint
                 </p>
-                <a href="#" className="primary-btn">
-                  Get Started
-                </a>
+                <Link to={"/contact"} className="primary-btn">
+                Contact Now
+                </Link>
               </div>
             </div>
           </div>

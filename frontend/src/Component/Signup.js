@@ -1,4 +1,4 @@
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import iconImage from "../images/logo.png";
 import { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
@@ -8,9 +8,12 @@ import { IoEyeOutline } from "react-icons/io5";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { apiURL } from "./utils/commonData";
 import isValidEmail from "./utils/validEmail";
+import {Spinner} from "./Spinner"
 
 export const Signup = () => {
-  const signupUrl = `${apiURL}signup`;
+  const [shouldSpin,setShouldSpin] = useState(false);
+  const navigate = useNavigate();
+  
   const [signupData, setsignUpData] = useState({
       uName:"",email:"",password:"",isAgreeTerms:false
   });
@@ -28,23 +31,32 @@ export const Signup = () => {
   }
 
   const createUser = async (data)=>{
-
+    setShouldSpin(true);
     const realData = {
       name : data.uName,
      email : data.email,
      password : data.password,
      phone : 414120123,
      isAgreeTerms:data.isAgreeTerms
-    }
+    }   
     
     try{
-      const response = await axios.post(signupUrl,{...realData});
+      const sentOTPMail = await axios.post(apiURL+"verify-mail",{email:realData.email});
+      // console.log("sentOTPMail response is ",sentOTPMail);
+
+      if(!sentOTPMail.data.success){
+        return toast.error("Unable To Send Mail ...Please Try Again")
+      }
+      setShouldSpin(false);
+      navigate(`/enterotptoverify/${realData.email}`,{state:{realData:realData}});
+
+      
       // console.log(response);
       toast.success("Account Created Successfully");
       emptyInputs();
     } catch(error){
-      console.log(error.message);
       toast.warning("Existing User");
+      setShouldSpin(false);
       emptyInputs();
     }
 
@@ -59,12 +71,14 @@ export const Signup = () => {
 
   const signupHandle = (e)=>{
     e.preventDefault();
-    console.log("signupData is ",signupData);
+    // console.log("signupData is ",signupData);
+
     if(!signupData.uName|| !signupData.password)
       return toast.warning("Please Fill All the details");
     
     if(!isValidEmail(signupData.email))
       return toast.warning("Email Is Not Valid");
+
     if(!signupData.isAgreeTerms)
       return toast.warning("Agree Our Terms And Policy");
     else{
@@ -72,7 +86,7 @@ export const Signup = () => {
     }
   }
   
-  return (
+  return shouldSpin?<Spinner/>:(
     <div className="h-screen bg-slate-100 flex justify-center  lg:items-center overflow-hidden">
       <form className="h-[90vh] sm:w-1/2 lg:w-1/3 xl:w-3/12 mt-4 flex flex-col gap-4 rounded-lg bg-white px-4 py-2 w-10/12">
           <img src={iconImage} className=" w-1/2 mx-auto"/>
@@ -81,7 +95,7 @@ export const Signup = () => {
             Adventure starts here 🚀
           </span>
           <span className="opacity-60">
-            Make your Gym mMnagement easy and fun!
+            Make your Gym Management easy and fun!
           </span>
         </div>
         <div className="flex flex-col">
