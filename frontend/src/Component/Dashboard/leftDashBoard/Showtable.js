@@ -20,6 +20,7 @@ export const Showtable = ()=>{
             <th className="py-2 px-4 border-b">Name</th>
             <th className="py-2 px-4 border-b">DOB</th>
             <th className="py-2 px-4 border-b">Phone</th>
+            <th className="py-2 px-4 border-b">Email</th>
             <th className="py-2 px-4 border-b">MemberShip Plan</th>
             <th className="py-2 px-4 border-b">Status</th>
           </tr>
@@ -52,6 +53,14 @@ export const Showtable = ()=>{
                     className="text-center "
                     readOnly
                   />
+                  <td className="py-2 px-4 border-b ">
+                  <input
+                    type="text"
+                    value={data?.email}
+                    className="text-center"
+                    readOnly
+                  />
+                </td>
                 </td>
                 <td className="py-2 px-4 border-b ">
                   <input
@@ -61,6 +70,7 @@ export const Showtable = ()=>{
                     readOnly
                   />
                 </td>
+                
                 <td className=" text-green-600 rounded-2xl">Active</td>
               </tr>
             );

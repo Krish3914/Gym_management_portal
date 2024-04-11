@@ -10,6 +10,7 @@ export const ShimmerTable = () => {
         <th className="py-2 px-4 border-b">Name</th>
             <th className="py-2 px-4 border-b">DOB</th>
             <th className="py-2 px-4 border-b">Phone</th>
+            <th className="py-2 px-4 border-b">Email</th>
             <th className="py-2 px-4 border-b">MemberShip Plan</th>
             <th className="py-2 px-4 border-b">Status</th>
         </tr>

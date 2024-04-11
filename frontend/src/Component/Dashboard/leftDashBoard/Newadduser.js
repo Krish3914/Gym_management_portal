@@ -1,5 +1,6 @@
+
 import axios from "axios";
-import {  useId, useState } from "react";
+import { useId, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,27 +9,28 @@ import { apiURL } from "../../utils/commonData";
 import { makeInvisible } from "../../redux/TemplateSlice";
 
 export const Newadduser = () => {
-  //accessing user(Owners) id from the store
+  // accessing user(Owners) id from the store
   const dispatch = useDispatch();
-  const userId = useSelector((store)=>store.user.userData?._id);
-  const [userInfo, setuserInfo] = useState({
+  const userId = useSelector((store) => store.user.userData?._id);
+  const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
     dob: "",
     plan: "month",
-    phone: null,
+    phone: "",
   });
 
   const addTraineeurl = `${apiURL}addtrainee`;
-  const emptyForm = ()=>{
+
+  const emptyForm = () => {
     // console.log("inside the empty form");
-    setuserInfo({
+    setUserInfo({
       name: "",
-    email: "",
-    dob: "",
-    plan: "month",
-    phone: "",
-    })
+      email: "",
+      dob: "",
+      plan: "month",
+      phone: "",
+    });
   };
 
   const createUser = async (data) => {
@@ -38,17 +40,17 @@ export const Newadduser = () => {
       phone: data.phone,
       dateOfBirth: data.dob,
       gymPlan: data.plan,
-      owner:userId
+      owner: userId,
     };
 
     try {
-      // console.log("check data to be passed",realData);
+      // console.log("check data to be passed", realData);
       const savedRes = await axios.post(addTraineeurl, { ...realData });
-      // console.log("server gives us this response ",savedRes);
+      // console.log("server gives us this response ", savedRes);
       if (savedRes.status !== 200) {
         throw new Error(`Error with status response: ${savedRes.status}`);
       }
-      toast.success("User Creates Successfully");
+      toast.success("User Created Successfully");
     } catch (err) {
       // console.log(err);
       toast.error("User Already Exists");
@@ -59,11 +61,24 @@ export const Newadduser = () => {
     // console.log(userInfo);
   };
 
+ const validatePhoneNumber = (phoneNumber) => {
+    // Enforces minimum 10 digits, maximum 13 digits, and "+" for lengths exceeding 10
+    const regex = /^((^\+)?[0-9]{10,13})$/;
+    return regex.test(phoneNumber);
+};
+
+
   const clickHandle = (e) => {
     e.preventDefault();
-    // console.log("printing userInfo ",userInfo);
-    if(userInfo.name == undefined || userInfo?.email == undefined || userInfo.dob == undefined || userInfo?.plan == undefined || userInfo.phone?.length !=10){
-      toast.warning("Please Fill Correct Details");
+    // console.log("printing userInfo ", userInfo);
+    if (
+      userInfo.name === undefined ||
+      userInfo?.email === undefined ||
+      userInfo.dob === undefined ||
+      userInfo?.plan === undefined ||
+      !validatePhoneNumber(userInfo.phone)
+    ) {
+      toast.warning("Please Fill Correct Details (Phone number 10-13 digits)");
       return;
     }
     createUser(userInfo);
@@ -72,11 +87,23 @@ export const Newadduser = () => {
   const changeHandle = (event) => {
     const { name, value } = event.target;
 
-    setuserInfo((prev) => ({
+    setUserInfo((prev) => ({
       ...prev,
       [name]: value,
     }));
   };
+
+  // Function to format phone number for display (optional)
+  const formatPhoneNumber = (phoneNumber) => {
+    // You can use a library like react-phone-number-input for formatting
+    // This is a basic example for illustration
+    if (!phoneNumber) return "";
+    const firstThree = phoneNumber.slice(0, 3);
+    const nextThree = phoneNumber.slice(3, 6);
+    const lastFour = phoneNumber.slice(6);
+    return `(${firstThree}) <span class="math-inline">\{nextThree\}\-</span>{lastFour}`;
+  };
+
 
   return !userId?(<Spinner/>):(
     <form className="flex flex-col gap-4 bg-white rounded-lg w-9/12 p-4 justify-center my-10" onClick={()=>dispatch(makeInvisible(false))}>

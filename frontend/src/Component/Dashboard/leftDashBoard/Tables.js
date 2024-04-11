@@ -20,6 +20,7 @@ const Table = () => {
 
   const [userData, setUserdata] = useState(clients);
   const [isReadonly, setisReadonly] = useState(true);
+  const [totalRows, setTotalRows] = useState(0);
   const getClients = async () => {
     try {
       const result = await axios.get(
@@ -99,17 +100,26 @@ const Table = () => {
   useEffect(() => {
     getClients();
   }, []);
+  useEffect(() => {
+    // Update totalRows when data is fetched
+    if (selector.length > 0) {
+      setTotalRows(selector.length);
+    }
+  }, [selector]);
 
   return selector.length === 0 ? (
     <ShimmerTable />
   ) : (
-    <div onClick={()=>dispatch(makeInvisible(false))} className="bg-blue-800">
+    <div>
+      <div className="text-black-600 flex justify-center" style={{ marginTop: '0rem', marginBottom: '2rem' }}><b>Number Of Users - {totalRows}</b></div>
+     <div onClick={()=>dispatch(makeInvisible(false))} className="bg-blue-800">
       <table className="min-w-full bg-white border border-gray-300 shadow-lg">
         <thead className="bg-gray-100">
           <tr>
             <th className="py-2 px-4 border-b">Name</th>
             <th className="py-2 px-4 border-b">DOB</th>
             <th className="py-2 px-4 border-b">Phone</th>
+            <th className="py-2 px-4 border-b">Email</th>
             <th className="py-2 px-4 border-b">MemberShip Plan</th>
             <th className="py-2 px-4 border-b">Status</th>
             <th className="py-2 px-4 border-b">Actions</th>
@@ -155,6 +165,17 @@ const Table = () => {
                 <td className="py-2 px-4 border-b">
                   <input
                     type="text"
+                    value={data?.email}
+                    className="text-center w-full"
+                    readOnly={isReadonly}
+                    onChange={(e) =>
+                      handleInputChange(index, "email", e.target.value)
+                    }
+                  />
+                </td>
+                <td className="py-2 px-4 border-b">
+                  <input
+                    type="text"
                     value={data?.gymPlan?data.gymPlan:data.plan}
                     className="text-center w-full"
                     readOnly
@@ -187,6 +208,7 @@ const Table = () => {
           })}
         </tbody>
       </table>
+    </div>
     </div>
   );
 };
