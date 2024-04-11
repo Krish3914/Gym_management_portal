@@ -10,7 +10,7 @@ const Classes = () => {
     <div onClick={()=>{setShow(false)}}>
     {/* <!-- Header End --> */}
     <HomeHeader show={show} setShow={setShow}/>
-    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb/classes-breadcrumb.jpg">
+    <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb/hero-bg.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
