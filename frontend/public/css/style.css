@@ -226,7 +226,7 @@ ul, ol {
   }
 
   .set-bg1 {
-    background-image: url("../img/breadcrumb/classes-breadcrumb.jpg");
+    background-image: url("../img/breadcrumb/hero-bg.jpg");
     background-repeat: no-repeat;
     background-size: cover; /* or contain, depending on your requirements */
     background-position: center center;
