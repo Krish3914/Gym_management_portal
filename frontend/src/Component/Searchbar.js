@@ -29,15 +29,16 @@ export const Searchbar = () => {
   };
 
   return (
-    <div className=" flex justify-between rounded-xl mt-4 mb-10 shadow-xl ">
-      <div className="w-8/12 p-4 flex items-center gap-4" onClick={()=>dispatch(makeInvisible(false))}>
+    <div className="flex justify-between rounded-xl mt-4 mb-10 shadow-xl ">
+      <div className="w-full p-4 flex items-center gap-4" onClick={()=>dispatch(makeInvisible(false))}>
         <CiSearch className="ml-4 text-xl" />
         <input
-          className=" searchinputs p-1 focus:border-none"
-          placeholder="Search by name, phone etc.."
+          className="w-1/3 searchinputs p-1 focus:border-none rounded-md"
+          placeholder="         Search by name, email,  phone etc.."
           value={searchData}
           onChange={changeHandle}
           autocomplete="off"
+          style={{ boxShadow: '0px 3px 3px rgba(0, 0, 0, 0.2)', fontSize:"15px" }}
         />
         {searchData?(
         <span
