@@ -4,6 +4,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { makeInvisible } from "../redux/TemplateSlice";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import Dashboard from "./Dashboard";
 
 export const Navbar = () => {
   const dispatch = useDispatch();
@@ -16,8 +17,8 @@ export const Navbar = () => {
   },[])
   return (
     <div className="" onClick={()=>dispatch(makeInvisible(false))}>
-      <table className=" flex flex-col gap-10">
-        <tr className="flex gap-10">
+      <table className=" flex flex-col gap-5" >
+        <tr className="flex gap-7">
           <td className="w-8/12 bg-white rounded-lg">
             {" "}
             <div className="bg-white rounded-xl p-2">
@@ -79,9 +80,11 @@ export const Navbar = () => {
             </div>
           </td>
         </tr>
-        <tr className="flex gap-10">
-          <td className="bg-white w-8/12"></td>
-          <td className="w-2/12 bg-white rounded-lg p-2">
+        <tr className="flex gap-7">
+          <td className="bg-white w-8/12 rounded-lg p-4 h-65"> 
+            <Dashboard />
+          </td>
+          <td className="w-2/12 bg-white rounded-lg p-2 h-1/3 flex flex-col gap-2">
             <div className="flex flex-col gap-2">
               <div className="flex items-center justify-between">
               <img
@@ -97,7 +100,7 @@ export const Navbar = () => {
               <span className="text-green-400 ">0%</span>
             </div>
           </td>
-          <td className="w-2/12 bg-white rounded-lg p-2">
+          <td className="w-2/12 bg-white rounded-lg p-2 h-1/3 flex flex-col gap-2">
             <div className="flex flex-col gap-2">
               <div className="flex justify-between items-center">
               <img
