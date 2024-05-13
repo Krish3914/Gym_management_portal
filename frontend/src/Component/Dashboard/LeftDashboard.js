@@ -20,7 +20,7 @@ export const LeftDashboard = () => {
               <img src={logopng}/>
             </div>
           </Link>
-          <div className="bg-indigo-100 text-blue-700 p-3 font-medium opacity-80 rounded-md flex align-items:center gap-3">
+          <div className="text-grey-400 p-3 font-medium opacity-80 rounded-md flex align-items:center gap-3">
             <Link to={"navbar"} className="hover:text-gray-600 display: inline-flex">
               <FaHome style={{ fontSize: "18px", marginRight: "15px", marginLeft:"5px", marginBottom:"5px", marginTop:"5px"}}/><div className="flex align-items:center" style={{ marginBottom:"5px", marginTop:"5px"}}>Dashboard</div> 
             </Link>
