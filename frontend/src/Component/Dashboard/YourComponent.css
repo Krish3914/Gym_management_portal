@@ -1,0 +1,23 @@
+/* MyComponent.css */
+.my-div {
+    background-color: white;
+    width: 400px;
+    border-radius: 20px;
+    padding-top: 10px;
+    /* Set your desired width */
+    /* Other styles as needed */
+}
+.my-divv {
+    background-color: white;
+    height: 550px;
+    width: 300px;
+    border-radius: 20px;
+    padding-top: 19px;
+    margin-top: 0px;
+    /* Set your desired width */
+    /* Other styles as needed */
+}
+.he{
+    height: 30px;
+    margin-left: 10px;
+}
