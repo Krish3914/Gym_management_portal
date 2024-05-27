@@ -12,43 +12,123 @@ import logopng from "../../images/logo.png"
 export const LeftDashboard = () => {
   return (
     <>
-      <div className="bg-white p-4 flex flex-col gap-4 h-screen">
-        <div className="flex flex-col gap-2 ">
+      <div className="bg-white p-6 flex flex-col gap-4 h-screen overflow-auto">
+        <div className="flex flex-col gap-2">
           <Link to={"navbar"}>
             {" "}
             <div className="flex self-start gap-2 ">
-              <img src={logopng}/>
+              <img src={logopng} />
             </div>
           </Link>
           <div className="text-grey-400 p-3 font-medium opacity-80 rounded-md flex align-items:center gap-3">
-            <Link to={"navbar"} className="hover:text-gray-600 display: inline-flex">
-              <FaHome style={{ fontSize: "18px", marginRight: "15px", marginLeft:"5px", marginBottom:"5px", marginTop:"5px"}}/><div className="flex align-items:center" style={{ marginBottom:"5px", marginTop:"5px"}}>Dashboard</div> 
+            <Link
+              to={"navbar"}
+              className="hover:text-gray-600 display: inline-flex"
+            >
+              <FaHome
+                style={{
+                  fontSize: "18px",
+                  marginRight: "15px",
+                  marginLeft: "5px",
+                  marginBottom: "5px",
+                  marginTop: "5px",
+                }}
+              />
+              <div
+                className="flex align-items:center"
+                style={{ marginBottom: "5px", marginTop: "5px" }}
+              >
+                Dashboard
+              </div>
             </Link>
           </div>
 
           <div className="text-grey-400 p-3 font-medium opacity-80 rounded-md flex justify-between flex-col gap-3">
-          <Link to={"/dashboard/traineeform"} className="hover:text-gray-600 display: inline-flex">
-              <FaUserPlus style={{ fontSize: "18px", marginRight: "15px", marginLeft:"5px", marginBottom:"5px", marginTop:"5px"}}/><div className="flex align-items:center" style={{ marginBottom:"5px", marginTop:"5px"}}>Add User</div> 
+            <Link
+              to={"/dashboard/traineeform"}
+              className="hover:text-gray-600 display: inline-flex"
+            >
+              <FaUserPlus
+                style={{
+                  fontSize: "18px",
+                  marginRight: "15px",
+                  marginLeft: "5px",
+                  marginBottom: "5px",
+                  marginTop: "5px",
+                }}
+              />
+              <div
+                className="flex align-items:center"
+                style={{ marginBottom: "5px", marginTop: "5px" }}
+              >
+                Add User
+              </div>
             </Link>
           </div>
           <div className="text-grey-400 p-3 font-medium opacity-80 rounded-md flex align-items:center gap-3">
-            <Link to={"/dashboard/tables"}className="hover:text-gray-600">
+            <Link to={"/dashboard/tables"} className="hover:text-gray-600">
               <div className="flex justify-between items-center cursor-pointer adduser">
-              <FaTable style={{ fontSize: "18px", marginRight: "15px", marginLeft:"5px", marginBottom:"5px", marginTop:"5px" }}/><div className="flex align-items:center" style={{ marginBottom:"5px", marginTop:"5px"}}>Table</div>
+                <FaTable
+                  style={{
+                    fontSize: "18px",
+                    marginRight: "15px",
+                    marginLeft: "5px",
+                    marginBottom: "5px",
+                    marginTop: "5px",
+                  }}
+                />
+                <div
+                  className="flex align-items:center"
+                  style={{ marginBottom: "5px", marginTop: "5px" }}
+                >
+                  Table
+                </div>
               </div>
             </Link>
           </div>
           <div className="text-grey-400 p-3 font-medium opacity-80 rounded-md flex justify-between flex-col gap-3">
-          <Link to={"/dashboard/support"} className="hover:text-gray-600 display: inline-flex items-center"> 
-            <FaHeadset style={{ fontSize: "18px", marginRight: "15px", marginLeft:"5px", marginBottom:"5px", marginTop:"5px"}} />  
-            <div className="flex align-items:center" style={{ marginBottom:"5px", marginTop:"5px"}}>Support</div>
-          </Link>
+            <Link
+              to={"/dashboard/support"}
+              className="hover:text-gray-600 display: inline-flex items-center"
+            >
+              <FaHeadset
+                style={{
+                  fontSize: "18px",
+                  marginRight: "15px",
+                  marginLeft: "5px",
+                  marginBottom: "5px",
+                  marginTop: "5px",
+                }}
+              />
+              <div
+                className="flex align-items:center"
+                style={{ marginBottom: "5px", marginTop: "5px" }}
+              >
+                Support
+              </div>
+            </Link>
           </div>
           <div className="text-grey-400 p-3 font-medium opacity-80 rounded-md flex justify-between flex-col gap-3">
-          <Link to={"/dashboard/FAQ"} className="hover:text-gray-600 display: inline-flex items-center"> 
-            <FaQuestionCircle style={{ fontSize: "18px", marginRight: "15px", marginLeft:"5px", marginBottom:"5px", marginTop:"5px"}} />  
-            <div className="flex align-items:center" style={{ marginBottom:"5px", marginTop:"5px"}}>FAQ</div>
-          </Link>
+            <Link
+              to={"/dashboard/FAQ"}
+              className="hover:text-gray-600 display: inline-flex items-center"
+            >
+              <FaQuestionCircle
+                style={{
+                  fontSize: "18px",
+                  marginRight: "15px",
+                  marginLeft: "5px",
+                  marginBottom: "5px",
+                  marginTop: "5px",
+                }}
+              />
+              <div
+                className="flex align-items:center"
+                style={{ marginBottom: "5px", marginTop: "5px" }}
+              >
+                FAQ
+              </div>
+            </Link>
           </div>
         </div>
       </div>

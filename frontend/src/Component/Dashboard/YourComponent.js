@@ -7,7 +7,7 @@ const OrderStatistics = () => {
     <div className="order-stats-container flex flex-col gap-5 width:30px my-div">
       <div className="category flex flex-col gap-1 justify-between items-center">
         <div className="total-sales">
-          <h4>Order Statistics</h4>
+          <h4>Expired-Membership</h4>
         </div>
         <div className="total-sales">42.82k Total Sales</div>
       </div>

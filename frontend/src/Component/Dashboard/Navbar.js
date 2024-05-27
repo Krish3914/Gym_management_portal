@@ -79,7 +79,7 @@ export const Navbar = () => {
                 <BsThreeDotsVertical />
               </div>
               <Link to={"/dashboard/salescard"}>
-                <h2 className="text-lg">Sales</h2>
+                <h2 className="text-lg">Renewal-Rate</h2>
               </Link>
               <span className="text-2xl font-medium opacity-65">0</span>
               <span className="text-green-400 ">0%</span>
@@ -90,48 +90,110 @@ export const Navbar = () => {
           <td className="bg-white w-8/12 rounded-lg p-4 h-65">
             <Dashboard />
           </td>
-          <td className="w-4/12 bg-white rounded-lg p-2 h-1/3 flex flex-col gap-2">
-            <div className="flex flex-col gap-2">
-              <div className="flex items-center justify-between">
-                <img
-                  src={require("../../images/icons/unicons/cc-success.png")}
-                  className="w-10"
-                />
-                <BsThreeDotsVertical />
-              </div>
-              <Link to={"/dashboard/notifications"}>
-                <h2 className="text-lg text-shadow-md">Notifications</h2>
-              </Link>
-              <span className="text-2xl font-medium opacity-65">
-                {expiredUserCount}
-              </span>
-              <span className="text-green-400 ">0%</span>
-            </div>
-          </td>
-          <td className="w-4/12 bg-white rounded-lg p-2 h-1/3 flex flex-col gap-2">
-            <div className="flex flex-col gap-2">
-              <div className="flex justify-between items-center">
-                <img
-                  src={require("../../images/icons/unicons/paypal.png")}
-                  className="w-10"
-                />
-                <BsThreeDotsVertical />
-              </div>
-              <Link to={"/dashboard/transactioncard"}>
-                <h2 className="text-lg">New Members</h2>
-              </Link>
-              <span className="text-2xl font-medium opacity-65">0</span>
-              <span className="text-red-400 ">0%</span>
-            </div>
+          <td className="bg-white w-8/12 rounded-lg p-4 h-65">
+            <tr className="flex gap-9 p-2">
+              <td className="w-4/12 bg-white rounded-lg p-2 h-1/3 flex flex-col gap-2">
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <img
+                      src={require("../../images/icons/unicons/cc-success.png")}
+                      className="w-10"
+                    />
+                    <BsThreeDotsVertical />
+                  </div>
+                  <Link to={"/dashboard/notifications"}>
+                    <h2 className="text-lg text-shadow-md">Notifications</h2>
+                  </Link>
+                  <span className="text-2xl font-medium opacity-65">
+                    {expiredUserCount}
+                  </span>
+                  <span className="text-green-400 ">0%</span>
+                </div>
+              </td>
+              <td className="w-4/12 bg-white rounded-lg p-2 h-1/3 flex flex-col gap-2">
+                <div className="flex flex-col gap-2">
+                  <div className="flex justify-between items-center">
+                    <img
+                      src={require("../../images/icons/unicons/paypal.png")}
+                      className="w-10"
+                    />
+                    <BsThreeDotsVertical />
+                  </div>
+                  <Link to={"/dashboard/transactioncard"}>
+                    <h2 className="text-lg">New Members</h2>
+                  </Link>
+                  <span className="text-2xl font-medium opacity-65">0</span>
+                  <span className="text-red-400 ">0%</span>
+                </div>
+              </td>
+            </tr>
+            <br />
+            <tr className="flex gap-7">
+              <td className="w-10/12 bg-white rounded-lg p-5 h-1/3 flex flex-col gap-5 ">
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <img
+                      src={require("../../images/icons/unicons/chart.png")}
+                      className="w-10"
+                    />
+                    <BsThreeDotsVertical />
+                  </div>
+                  <Link to={"/dashboard/notifications"}>
+                    <h2 className="text-lg text-shadow-md items-center justify-between">
+                      Overdue-Memberships
+                    </h2>
+                  </Link>
+                  <span className="text-2xl font-medium opacity-65">
+                    {expiredUserCount}
+                  </span>
+                  <span className="text-green-400 ">25%</span>
+                </div>
+              </td>
+            </tr>
           </td>
         </tr>
         <tr className="flex gap-2">
-          <YourComponent/>
+          <YourComponent />
         </tr>
       </table>
     </div>
   );
 };
+
+// <td className="w-4/12 bg-white rounded-lg p-2 h-1/3 flex flex-col gap-2">
+//             <div className="flex flex-col gap-2">
+//               <div className="flex items-center justify-between">
+//                 <img
+//                   src={require("../../images/icons/unicons/cc-success.png")}
+//                   className="w-10"
+//                 />
+//                 <BsThreeDotsVertical />
+//               </div>
+//               <Link to={"/dashboard/notifications"}>
+//                 <h2 className="text-lg text-shadow-md">Notifications</h2>
+//               </Link>
+//               <span className="text-2xl font-medium opacity-65">
+//                 {expiredUserCount}
+//               </span>
+//               <span className="text-green-400 ">0%</span>
+//             </div>
+//           </td>
+//           <td className="w-4/12 bg-white rounded-lg p-2 h-1/3 flex flex-col gap-2">
+//             <div className="flex flex-col gap-2">
+//               <div className="flex justify-between items-center">
+//                 <img
+//                   src={require("../../images/icons/unicons/paypal.png")}
+//                   className="w-10"
+//                 />
+//                 <BsThreeDotsVertical />
+//               </div>
+//               <Link to={"/dashboard/transactioncard"}>
+//                 <h2 className="text-lg">New Members</h2>
+//               </Link>
+//               <span className="text-2xl font-medium opacity-65">0</span>
+//               <span className="text-red-400 ">0%</span>
+//             </div>
+//           </td>
 
 // <td className="bg-white w-8/12 rounded-lg p-4 h-65">
 //             <Dashboard />

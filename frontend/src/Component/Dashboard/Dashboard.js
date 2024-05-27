@@ -1,36 +1,36 @@
 import React from 'react';
 import { Chart, PointElement } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import { Line, Bar } from 'react-chartjs-2';
 import { registerables } from 'chart.js'; // Assuming you're using Chart.js v3
 
 const TotalRevenue = () => {
   // Sample chart data
   Chart.register(...registerables);
   const chartData = {
-    
-    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
     datasets: [
       {
-        type:"bar",
-        label: '2021',
+        type: "bar",
+        label: "2021",
         data: [18, 7, 15, 29, 18, 12, 9],
         fill: true,
-        backgroundColor: 'rgba(127,130,255, 0.5)',
-        borderWidth: 1,
-        borderColor: 'rgb(127,130,255)',
+        backgroundColor: "rgba(127,130,255, 0.5)",
+        borderWidth: 5,
+        borderColor: "rgb(127,130,255)",
         tension: 0.1,
-        
+        borderRadius: 20,
       },
       {
-        type:"bar",
-        label: '2020',
+        type: "bar",
+        label: "2020",
         data: [-13, -18, -9, -14, -5, -17, -15],
         fill: true,
-        borderWidth: 1,
-        backgroundColor: 'rgba(39,203,238,0.5)',
-        borderColor: 'rgb(39,203,238)',
+        borderWidth: 5,
+        backgroundColor: "rgba(39,203,238,0.5)",
+        borderColor: "rgb(39,203,238)",
         tension: 0.1,
-        
+        borderRadius: 20,
+        // endingShape: "rounded",
       },
     ],
   };
@@ -40,47 +40,48 @@ const TotalRevenue = () => {
     maintainAspectRatio: false, // Prevents the chart from maintaining aspect ratio
     plugins: {
       legend: {
-          labels: {
-              // This more specific font property overrides the global property
-              pointStyle: 'circle',
-              font: {
-                  size: 16
-              },
-              position: 'top',
-              align: 'start',
-          }
-      }
-  },
+        labels: {
+          // This more specific font property overrides the global property
+          pointStyle: "circle",
+          font: {
+            size: 16,
+          },
+          position: "top",
+          align: "start",
+        },
+      },
+      // drawRoundedBars: {},
+    },
     scales: {
       x: {
         grid: {
-          display: false // Hides grid lines for x-axis
+          display: false, // Hides grid lines for x-axis
         },
         ticks: {
           fontSize: 15,
-        maxRotation: 0, // Disable rotation
-        minRotation: 0, // Disable rotation
-        align: 'start' // Align ticks to the start of the x-axis
-        }
+          maxRotation: 0, // Disable rotation
+          minRotation: 0, // Disable rotation
+          align: "start", // Align ticks to the start of the x-axis
+        },
       },
       y: {
         grid: {
           display: true,
-          color: 'rgba(0,0,0,0.1)',
-          borderColor: 'rgba(0,0,0,0.1)',
+          color: "rgba(0,0,0,0.1)",
+          borderColor: "rgba(0,0,0,0.1)",
           tick: {
-            stepSize: 10
-          }
+            stepSize: 10,
+          },
         },
         ticks: {
           stepSize: 5,
           fontSize: 15,
           maxRotation: 0,
           minRotation: 0,
-          align: 'start'
-        }
-      }
-    }
+          align: "start",
+        },
+      },
+    },
   };
   
 

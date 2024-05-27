@@ -35,14 +35,17 @@ export const Dashboard = () => {
   }, []);
 
   return (
-    <div className="flex bg-slate-100 " onClick={()=>  dispatch(makeInvisible(false))}>
-      <div className="w-2/12 hidden lg:block">
+    <div
+      className="flex bg-slate-100"
+      onClick={() => dispatch(makeInvisible(false))}
+    >
+      <div className="w-2/12 hidden lg:block fixed">
         <LeftDashboard />
       </div>
-      <div className=" lg:w-9/12 mx-auto ">
+      <div className=" lg:w-10/12 mx-auto overflow-auto p-10 ml-64">
         <Searchbar />
-        <Outlet/>
-        <Footer/>
+        <Outlet />
+        <Footer />
       </div>
       <ToastContainer />
     </div>
